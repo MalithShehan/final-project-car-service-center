@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane fx:id="AddCustomer" cacheShape="false" centerShape="false" prefHeight="768.0" prefWidth="1366.0" scaleShape="false" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carServiceCenter.Controller.AddCustomerFormController">
+    <children>
+        <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/Rectangle%201.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imagefrunt" fitHeight="664.0" fitWidth="1186.0" layoutX="89.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/Rectangle%2015.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageBar" fitHeight="634.0" fitWidth="148.0" layoutX="89.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/Rectangle%2033.png" />
+            </image>
+        </ImageView>
+          <FontIcon fx:id="dashBordBtn" fill="WHITE" iconColor="WHITE" iconLiteral="bi-grid-1x2-fill" iconSize="30" tabSize="20" />
+      <TextField fx:id="textName" layoutX="500.0" layoutY="170.0" onAction="#textSearchOnAction" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Text layoutX="622.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Customer">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textNIC" layoutX="501.0" layoutY="234.0" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="textAddress" layoutX="501.0" layoutY="299.0" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="textTelNumber" layoutX="501.0" layoutY="363.0" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutX="404.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="432.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="378.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="330.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel Number">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Button fx:id="addBtn" layoutX="1034.0" layoutY="172.0" mnemonicParsing="false" onAction="#addBtnOnAction" prefHeight="52.0" prefWidth="156.0" style="-fx-background-color: F5E01F; -fx-background-radius: 12;" text=" Add" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <FontIcon iconLiteral="bi-plus-circle-fill" text="" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnClear" layoutX="1035.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="52.0" prefWidth="156.0" style="-fx-background-color: 77FDED; -fx-background-radius: 12;" text="Clear">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <FontIcon iconLiteral="bi-eraser-fill" iconSize="30" tabSize="10" />
+         </graphic>
+      </Button>
+      <TableView fx:id="tblCustormer" layoutX="252.0" layoutY="477.0" prefHeight="210.0" prefWidth="954.0" style="-fx-background-color: rgba(159, 232, 255, 1); -fx-background-radius: 15;">
+        <columns>
+          <TableColumn fx:id="colNIC" minWidth="20.0" prefWidth="200.0" style="-fx-font-size: 15;" text="NIC" />
+            <TableColumn fx:id="colName" prefWidth="200.0" style="-fx-font-size: 15; -fx-background-radius: 12;" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="150.0" style="-fx-font-size: 15; -fx-background-radius: 12;" text="Address" />
+          <TableColumn fx:id="colTellNumber" prefWidth="150.0" style="-fx-font-size: 15;" text="Tel Number" />
+            <TableColumn fx:id="colEmail" prefWidth="250.0" style="-fx-font-size: 15;" text="Email" />
+        </columns>
+      </TableView>
+        <ImageView fx:id="imageDashboard" fitHeight="30.0" fitWidth="30.0" layoutX="130.0" layoutY="205.0" onMouseClicked="#btnDashboardOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Group.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageAddCustomer" fitHeight="30.0" fitWidth="35.0" layoutX="127.0" layoutY="272.0" onMouseClicked="#btnAddCustomerOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Rectangle%2035.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageBooking" fitHeight="30.0" fitWidth="35.0" layoutX="128.0" layoutY="338.0" onMouseClicked="#btnBookOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Rectangle%2034.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageRepair" fitHeight="40.0" fitWidth="40.0" layoutX="124.0" layoutY="402.0" onMouseClicked="#btnRepairOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Rectangle%2051.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageWallate" fitHeight="35.0" fitWidth="35.0" layoutX="127.0" layoutY="471.0" onMouseClicked="#btnWallteOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Rectangle%2052.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imageLogOut" fitHeight="35.0" fitWidth="35.0" layoutX="128.0" layoutY="642.0" onMouseClicked="#btnLogOutOnAction" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../icon/Rectangle%2037.png" />
+            </image>
+        </ImageView>
+      <TextField fx:id="textEmail" layoutX="502.0" layoutY="424.0" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text fill="WHITE" layoutX="412.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnUpdate" layoutX="1034.0" layoutY="244.0" mnemonicParsing="false" onAction="#updateBtnOnAction" prefHeight="52.0" prefWidth="156.0" style="-fx-background-radius: 12; -fx-background-color: rgba(12, 229, 60, 1);" text=" Update" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <FontIcon iconLiteral="bi-pen-fill" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnDelete" layoutX="1035.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="52.0" prefWidth="156.0" style="-fx-background-color: rgba(251, 33, 33, 1); -fx-background-radius: 12;" text=" Delete" textFill="#f5f5f5">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <FontIcon iconLiteral="bi-trash-fill" iconSize="30" tabSize="10" />
+         </graphic>
+      </Button>
+    </children>
+</AnchorPane>

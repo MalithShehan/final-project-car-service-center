@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="loginPage" cacheShape="false" centerShape="false" prefHeight="768.0" prefWidth="1366.0" scaleShape="false" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carServiceCenter.Controller.UserLoginController">
+   <children>
+      <ImageView fx:id="imageBack" fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/BackPic1.png" />
+         </image></ImageView>
+      <ImageView fitHeight="660.0" fitWidth="422.0" layoutX="507.0" layoutY="55.0" opacity="0.92" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Frame%201.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="62.0" fitWidth="116.0" layoutX="531.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Logo.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="41.0" fitWidth="146.0" layoutX="621.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Auto%20Service.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="618.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to">
+         <font>
+            <Font name="Calibri" size="40.0" />
+         </font>
+      </Text>
+      <Text layoutX="618.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Service!">
+         <font>
+            <Font name="Calibri" size="40.0" />
+         </font>
+      </Text>
+      <TextField fx:id="textUsername" layoutX="562.0" layoutY="309.0" prefHeight="45.0" prefWidth="306.0" promptText="Enter Username" style="-fx-background-color: FFFFFF; -fx-background-radius: 5;">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.6823529601097107" green="0.6431372761726379" blue="0.6431372761726379" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <Text layoutX="565.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="564.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="textForgetPassword" fill="#073a86" layoutX="564.0" layoutY="476.0" onMouseClicked="#forgetPasswordOnAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget your password?">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="btnSingIn" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="619.0" layoutY="526.0" onAction="#btnSingInOnAction" prefHeight="41.0" prefWidth="200.0" style="-fx-background-color: rgba(1, 149, 131, 1); -fx-background-radius: 8;" text="Sign in" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <Text layoutX="646.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have and account?">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7236841917037964" green="0.666727602481842" blue="0.666727602481842" />
+               </color>
+            </DropShadow>
+         </effect></Text>
+      <Text fx:id="textCreateAccount" fill="#006943" layoutX="662.0" layoutY="635.0" onMouseClicked="#createAccountOnAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account" underline="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7236841917037964" green="0.666727602481842" blue="0.666727602481842" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <PasswordField fx:id="textPassword" layoutX="560.0" layoutY="409.0" prefHeight="45.0" prefWidth="306.0" promptText="Enter Password" style="-fx-background-color: FFFFFF; -fx-background-radius: 5;">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.6823529601097107" green="0.6431372761726379" blue="0.6431372761726379" />
+               </color>
+            </DropShadow>
+         </effect>
+      </PasswordField>
+   </children>
+</AnchorPane>
