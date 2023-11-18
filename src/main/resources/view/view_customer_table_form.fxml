@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="customerTable" cacheShape="false" centerShape="false" prefHeight="768.0" prefWidth="1366.0" scaleShape="false" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carServiceCenter.Controller.CustomerTableFormController">
+    <children>
+        <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/BackPic1.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imagefrunt" fitHeight="680.0" fitWidth="1264.0" layoutX="57.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/Rectangle%2015.png" />
+            </image>
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="0.5921052694320679" green="0.48519736528396606" blue="0.48519736528396606" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </ImageView>
+        <Text layoutX="555.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Table">
+            <font>
+                <Font name="System Bold" size="35.0" />
+            </font>
+        </Text>
+      <JFXButton fx:id="btnBack" contentDisplay="GRAPHIC_ONLY" layoutX="70.0" layoutY="47.0" onAction="#btnBackOnAction" prefHeight="32.0" prefWidth="46.0" style="-fx-background-radius: 60%;">
+         <graphic>
+            <ImageView fitHeight="94.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-back-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="tblCustomer" layoutX="78.0" layoutY="176.0" prefHeight="513.0" prefWidth="1204.0">
+        <columns>
+          <TableColumn fx:id="colNIC" minWidth="31.0" prefWidth="200.0" style="-fx-font-size: 15;" text="NIC" />
+          <TableColumn fx:id="colName" prefWidth="200.0" style="-fx-font-size: 15;" text="Name" />
+            <TableColumn fx:id="colAddress" prefWidth="200.0" style="-fx-font-size: 15;" text="Address" />
+            <TableColumn fx:id="colTellNumber" prefWidth="200.0" style="-fx-font-size: 15;" text="Tell Number" />
+            <TableColumn fx:id="colEmail" prefWidth="200.0" style="-fx-font-size: 15;" text="Email" />
+            <TableColumn fx:id="colDate" prefWidth="200.0" style="-fx-font-size: 15;" text="Date" />
+            <TableColumn prefWidth="200.0" text="C2" />
+            <TableColumn prefWidth="200.0" text="Address" />
+        </columns>
+      </TableView>
+    </children>
+</AnchorPane>

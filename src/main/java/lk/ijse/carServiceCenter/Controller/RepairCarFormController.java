@@ -1,14 +1,12 @@
 package lk.ijse.carServiceCenter.Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -18,55 +16,28 @@ import java.util.Objects;
 public class RepairCarFormController {
 
     @FXML
-    private Button addBtn;
+    private JFXButton btnAdd;
 
     @FXML
-    private Button addPartsBtn;
+    private JFXButton btnAddParts;
 
     @FXML
-    private Button btnClear;
+    private JFXButton btnClear;
 
     @FXML
-    private TableColumn<?, ?> colAction;
+    private JFXButton btnDelete;
 
     @FXML
-    private TableColumn<?, ?> colAddress;
+    private JFXButton btnUpdate;
 
     @FXML
-    private TableColumn<?, ?> colNIC;
-
-    @FXML
-    private TableColumn<?, ?> colName;
-
-    @FXML
-    private TableColumn<?, ?> colRepairPrice;
+    private JFXButton btnViewRepairTable;
 
     @FXML
     private FontIcon dashBordBtn;
 
     @FXML
-    private ImageView imageAddCustomer;
-
-    @FXML
     private ImageView imageBack;
-
-    @FXML
-    private ImageView imageBar;
-
-    @FXML
-    private ImageView imageBooking;
-
-    @FXML
-    private ImageView imageDashboard;
-
-    @FXML
-    private ImageView imageLogOut;
-
-    @FXML
-    private ImageView imageRepair;
-
-    @FXML
-    private ImageView imageWallate;
 
     @FXML
     private ImageView imagefrunt;
@@ -75,50 +46,25 @@ public class RepairCarFormController {
     private AnchorPane repairCar;
 
     @FXML
-    private TableView<?> tblCarRepair;
+    private TextField textID;
 
     @FXML
-    private TextField textAddress;
+    private TextField textRepairType;
 
     @FXML
-    private TextField textNIC;
+    private JFXComboBox<?> txtNIC;
 
     @FXML
-    private TextField textName;
+    private TextField txtRepaiPrice;
 
     @FXML
-    private TextField textRepairPrice;
+    void btnAddOnAction(ActionEvent event) {
 
-    @FXML
-    void addBtnOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnAddCustomerOnAction(MouseEvent event) {
-        try {
-            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_customer_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
     void btnAddPartsOnAction(ActionEvent event) {
-        try {
-            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/addParts_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    @FXML
-    void btnBookOnAction(MouseEvent event) {
-        try {
-            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/booking_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
@@ -127,55 +73,33 @@ public class RepairCarFormController {
     }
 
     @FXML
-    void btnDashboardOnAction(MouseEvent event) {
+    void btnDeleteOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnViewRepairTableOnAction(ActionEvent event) {
         try {
+            repairCar.getChildren().clear();
+            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/view_repair_table.fxml"))));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnBackOnAction(ActionEvent actionEvent) {
+        try {
+            repairCar.getChildren().clear();
             repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    void btnLogOutOnAction(MouseEvent event) {
-        try {
-            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/login_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnRepairOnAction(MouseEvent event) {
-        try {
-            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repairCar_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnWallteOnAction(MouseEvent event) {
-
-    }
-
-    @FXML
-    void textAddressOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void textNICOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void textNameOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void textRepairPriceOnAction(ActionEvent event) {
-
-    }
-
 }

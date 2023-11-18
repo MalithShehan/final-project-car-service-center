@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -15,124 +16,121 @@
     <children>
         <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../image/Rectangle%201.png" />
+                <Image url="@../image/BackPic1.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="imagefrunt" fitHeight="664.0" fitWidth="1186.0" layoutX="89.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="imagefrunt" fitHeight="665.0" fitWidth="1232.0" layoutX="77.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../image/Rectangle%2015.png" />
+                <Image url="@../image/RepairPage.png" />
             </image>
-        </ImageView>
-        <ImageView fx:id="imageBar" fitHeight="634.0" fitWidth="148.0" layoutX="89.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../image/Rectangle%2033.png" />
-            </image>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.75" green="0.71875" blue="0.71875" />
+               </color>
+            </DropShadow>
+         </effect>
         </ImageView>
         <FontIcon fx:id="dashBordBtn" fill="WHITE" iconColor="WHITE" iconLiteral="bi-grid-1x2-fill" iconSize="30" tabSize="20" />
-        <TextField fx:id="textName" layoutX="528.0" layoutY="157.0" onAction="#textNameOnAction" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+        <TextField fx:id="textID" layoutX="136.0" layoutY="199.0" prefHeight="45.0" prefWidth="340.0" promptText="ID" style="-fx-background-radius: 10;">
             <font>
                 <Font size="18.0" />
             </font></TextField>
-        <Text layoutX="640.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Repair">
+        <Text layoutX="599.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Repair">
             <font>
                 <Font name="System Bold" size="35.0" />
             </font>
         </Text>
-        <TextField fx:id="textNIC" layoutX="529.0" layoutY="221.0" onAction="#textNICOnAction" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+        <TextField fx:id="txtRepaiPrice" layoutX="889.0" layoutY="199.0" prefHeight="45.0" prefWidth="340.0" promptText="Repair Price" style="-fx-background-radius: 10;">
             <font>
                 <Font size="18.0" />
             </font></TextField>
-        <TextField fx:id="textAddress" layoutX="529.0" layoutY="286.0" onAction="#textAddressOnAction" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
-            <font>
-                <Font size="18.0" />
-            </font></TextField>
-        <Text fill="WHITE" layoutX="432.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-            <font>
-                <Font size="30.0" />
-            </font>
-        </Text>
-        <Text fill="WHITE" layoutX="460.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC">
-            <font>
-                <Font size="30.0" />
-            </font>
-        </Text>
-        <Text fill="WHITE" layoutX="406.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
-            <font>
-                <Font size="30.0" />
-            </font>
-        </Text>
-        <Button fx:id="addBtn" layoutX="1003.0" layoutY="168.0" mnemonicParsing="false" onAction="#addBtnOnAction" prefHeight="52.0" prefWidth="129.0" style="-fx-background-color: F5E01F; -fx-background-radius: 12;" text=" Add" textOverrun="CLIP">
-            <font>
-                <Font name="System Bold" size="25.0" />
-            </font>
-            <graphic>
-                <FontIcon iconLiteral="bi-plus-circle-fill" />
-            </graphic>
-        </Button>
-        <Button fx:id="btnClear" layoutX="1005.0" layoutY="241.0" mnemonicParsing="false" onAction="#btnClearOnAction" style="-fx-background-color: 77FDED; -fx-background-radius: 12;" text="Clear">
-            <font>
-                <Font name="System Bold" size="25.0" />
-            </font>
-            <graphic>
-                <FontIcon iconLiteral="bi-eraser-fill" iconSize="30" tabSize="10" />
-            </graphic>
-        </Button>
-        <TableView fx:id="tblCarRepair" layoutX="282.0" layoutY="421.0" prefHeight="266.0" prefWidth="902.0" style="-fx-background-color: rgba(159, 232, 255, 1); -fx-background-radius: 15;">
-            <columns>
-                <TableColumn fx:id="colName" minWidth="20.0" prefWidth="200.0" style="-fx-font-size: 15;" text="Name" />
-                <TableColumn fx:id="colNIC" prefWidth="200.0" style="-fx-font-size: 15; -fx-background-radius: 12;" text="NIC" />
-                <TableColumn fx:id="colAddress" prefWidth="150.0" style="-fx-font-size: 15; -fx-background-radius: 12;" text="Address" />
-                <TableColumn fx:id="colRepairPrice" prefWidth="200.0" style="-fx-font-size: 15;" text="Repair Price" />
-            <TableColumn fx:id="colAction" prefWidth="150.0" style="-fx-font-size: 15;" text="Action" />
-            </columns>
-        </TableView>
-        <ImageView fx:id="imageDashboard" fitHeight="30.0" fitWidth="30.0" layoutX="130.0" layoutY="205.0" onMouseClicked="#btnDashboardOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Group.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="imageAddCustomer" fitHeight="30.0" fitWidth="35.0" layoutX="127.0" layoutY="272.0" onMouseClicked="#btnAddCustomerOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Rectangle%2035.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="imageBooking" fitHeight="30.0" fitWidth="35.0" layoutX="128.0" layoutY="338.0" onMouseClicked="#btnBookOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Rectangle%2034.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="imageRepair" fitHeight="40.0" fitWidth="40.0" layoutX="124.0" layoutY="402.0" onMouseClicked="#btnRepairOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Rectangle%2051.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="imageWallate" fitHeight="35.0" fitWidth="35.0" layoutX="127.0" layoutY="471.0" onMouseClicked="#btnWallteOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Rectangle%2052.png" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="imageLogOut" fitHeight="35.0" fitWidth="35.0" layoutX="128.0" layoutY="642.0" onMouseClicked="#btnLogOutOnAction" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../icon/Rectangle%2037.png" />
-            </image>
-        </ImageView>
-      <Button fx:id="addPartsBtn" layoutX="972.0" layoutY="312.0" mnemonicParsing="false" onAction="#btnAddPartsOnAction" prefHeight="52.0" prefWidth="191.0" style="-fx-background-color: rgba(62, 251, 31, 1); -fx-background-radius: 12;" text=" Add Parts" textOverrun="CLIP">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-         <graphic>
-            <FontIcon iconLiteral="bi-wrench" />
-         </graphic>
-      </Button>
-      <TextField fx:id="textRepairPrice" layoutX="529.0" layoutY="351.0" onAction="#textRepairPriceOnAction" prefHeight="45.0" prefWidth="350.0" style="-fx-background-radius: 10;">
+      <TextField fx:id="textRepairType" layoutX="135.0" layoutY="301.0" prefHeight="45.0" prefWidth="340.0" promptText="Repair Type" style="-fx-background-radius: 10;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Text fill="WHITE" layoutX="361.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repair Price">
+      <JFXComboBox fx:id="txtNIC" layoutX="512.0" layoutY="199.0" prefHeight="45.0" prefWidth="340.0" promptText="NIC" style="-fx-background-color: FFFF;" />
+      <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="146.0" layoutY="406.0" onAction="#btnAddOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(123, 196, 212, 1); -fx-background-radius: 12;" text="Add">
          <font>
-            <Font size="30.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
-      </Text>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-add-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="363.0" layoutY="407.0" onAction="#btnUpdateOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(144, 221, 202, 1); -fx-background-radius: 12;" text=" Update">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-update-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="580.0" layoutY="408.0" onAction="#btnClearOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(163, 168, 175, 1); -fx-background-radius: 12;" text=" Clear">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-clear-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="793.0" layoutY="408.0" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: rgba(236, 143, 143, 1); -fx-background-radius: 12;" text=" Delete">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-delete-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnViewRepairTable" buttonType="RAISED" layoutX="384.0" layoutY="524.0" onAction="#btnViewRepairTableOnAction" prefHeight="62.0" prefWidth="360.0" style="-fx-background-color: rgba(233, 228, 125, 1); -fx-background-radius: 12;" text="   View Repair Table">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-table-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnAddParts" buttonType="RAISED" layoutX="559.0" layoutY="290.0" onAction="#btnAddPartsOnAction" prefHeight="62.0" prefWidth="304.0" style="-fx-background-color: rgba(78, 83, 82, 1); -fx-background-radius: 12;" text=" Add More Parts " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-rotating-parts-hazard-96.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnBack" cache="true" contentDisplay="GRAPHIC_ONLY" depthTest="DISABLE" layoutX="96.0" layoutY="82.0" onAction="#btnBackOnAction" prefHeight="51.0" prefWidth="52.0" style="-fx-background-radius: 70%;">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-back-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
     </children>
 </AnchorPane>

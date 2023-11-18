@@ -135,7 +135,7 @@ public class AddPartsFromController {
     @FXML
     void btnRepairOnAction(MouseEvent event) {
         try {
-            addParts.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repairCar_form.fxml"))));
+            addParts.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repair_car_form.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

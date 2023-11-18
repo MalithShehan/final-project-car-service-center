@@ -1,77 +1,52 @@
 package lk.ijse.carServiceCenter.Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.carServiceCenter.dto.BookingDto;
-import lk.ijse.carServiceCenter.model.BookingModel;
-import org.kordamp.ikonli.javafx.FontIcon;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.Objects;
 
 public class BookingFormController {
 
     @FXML
-    private AnchorPane Booking;
+    private JFXButton btnViewBookingTable;
 
     @FXML
-    private Button addBtn;
+    private AnchorPane BookingPage;
 
     @FXML
-    private Button btnClear;
+    private JFXButton btnAdd;
 
     @FXML
-    private TableColumn<?, ?> colAction;
+    private JFXButton btnBack;
 
     @FXML
-    private TableColumn<?, ?> colBookId;
+    private JFXButton btnClear;
 
     @FXML
-    private TableColumn<?, ?> colBookType;
+    private JFXButton btnDelete;
 
     @FXML
-    private TableColumn<?, ?> colCustomerNIC;
+    private JFXButton btnUpdate;
 
     @FXML
-    private FontIcon dashBordBtn;
+    private JFXButton btnViewCustomer;
 
     @FXML
-    private ImageView imageAddCustomer;
+    private JFXComboBox<?> comBoxNIC;
 
     @FXML
     private ImageView imageBack;
 
     @FXML
-    private ImageView imageBar;
-
-    @FXML
-    private ImageView imageBooking;
-
-    @FXML
-    private ImageView imageDashboard;
-
-    @FXML
-    private ImageView imageLogOut;
-
-    @FXML
-    private ImageView imageRepair;
-
-    @FXML
-    private ImageView imageWallate;
-
-    @FXML
     private ImageView imagefrunt;
-
-    @FXML
-    private TableView<?> tblCustormer;
 
     @FXML
     private TextField textBookId;
@@ -83,43 +58,16 @@ public class BookingFormController {
     private DatePicker textDate;
 
     @FXML
-    private Button btnUpdate;
+    void btnAddOnAction(ActionEvent event) {
 
-    @FXML
-    private Text textNIC;
-    @FXML
-    void addBtnOnAction(ActionEvent event) {
-        String bookId = textBookId.getText();
-        String bookType = textBookType.getText();
-        String customerNIC = textNIC.getText();
-        Date date = Date.valueOf(textDate.getValue());
-
-        var model = new BookingModel();
-
-        try {
-            boolean isSaved = model.saveBooking(new BookingDto(bookId, bookType, customerNIC, date));
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION,"Booking Add Successfully").show();
-                return;
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
-        }
     }
 
     @FXML
-    void btnAddCustomerOnAction(MouseEvent event) {
+    void btnBackOnAction(ActionEvent event) {
         try {
-            Booking.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_customer_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+            BookingPage.getChildren().clear();
+            BookingPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
 
-    @FXML
-    void btnBookOnAction(MouseEvent event) {
-        try {
-            Booking.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/booking_customer_form.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -131,53 +79,26 @@ public class BookingFormController {
     }
 
     @FXML
-    void btnDashboardOnAction(MouseEvent event) {
+    void btnDeleteOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void btnViewBookingTableOnAction(ActionEvent event) {
         try {
-            Booking.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_customer_form.fxml"))));
+            BookingPage.getChildren().clear();
+            BookingPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/view_booking_table.fxml"))));
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
     @FXML
-    void btnLogOutOnAction(MouseEvent event) {
-        try {
-            Booking.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/login_customer_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    void cmbNICOnAction(ActionEvent event) {
 
-    @FXML
-    void btnRepairOnAction(MouseEvent event) {
-        try {
-            Booking.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repairCar_form.fxml"))));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @FXML
-    void btnWallteOnAction(MouseEvent event) {
-
-    }
-
-    public void btnUpdateOnAction(ActionEvent actionEvent) {
-        String bookId = textBookId.getText();
-        String bookType = textBookType.getText();
-        String customerNIC = textNIC.getText();
-        Date date = Date.valueOf(textDate.getValue());
-
-        try {
-            boolean isUpdate = BookingModel.updateBooking(new BookingDto(bookId, bookType, customerNIC, date));
-            if (isUpdate) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Booking Updated").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
-
-    public void cmbNICOnAction(ActionEvent actionEvent) {
     }
 }

@@ -40,23 +40,23 @@ public class UserLoginController {
     private TextField textUsername;
 
     @FXML
-    void btnSingInOnAction(ActionEvent event) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        Scene scene = new Scene(anchorPane);
-        Stage stage = (Stage) loginPage.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Dashboard");
-        stage.centerOnScreen();
+    void btnSingInOnAction(ActionEvent event) {
+        try {
+            loginPage.getChildren().clear();
+            loginPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void createAccountOnAction(MouseEvent event) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/register_form.fxml"));
-        Scene scene = new Scene(anchorPane);
-        Stage stage = (Stage) loginPage.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Register");
-        stage.centerOnScreen();
+    void createAccountOnAction(MouseEvent event) {
+        try {
+            loginPage.getChildren().clear();
+            loginPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/register_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

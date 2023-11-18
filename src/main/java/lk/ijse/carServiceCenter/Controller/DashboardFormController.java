@@ -1,42 +1,34 @@
 package lk.ijse.carServiceCenter.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class DashboardFormController {
 
         @FXML
-        private Button btnBook;
+        private JFXButton btnBookin;
 
         @FXML
-        private Button btnCustomerAdd;
+        private JFXButton btnCustomer;
 
         @FXML
-        private Button btnHome;
-
-        @FXML
-        private Button btnLogOut;
+        private JFXButton btnHome;
 
         @FXML
         private ImageView btnPlus;
 
         @FXML
-        private Button btnRepair;
-
-        @FXML
         private ImageView btnRepairCars;
-
-        @FXML
-        private Button btnWallate;
 
         @FXML
         private ImageView btnWashingCars;
@@ -51,48 +43,51 @@ public class DashboardFormController {
         private ImageView imagefrunt;
 
         @FXML
-        void btnAddCustomerOnAction(ActionEvent event) {
+        void btnBookinOnAction(ActionEvent event) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/booking_form.fxml"))));
 
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
         }
 
         @FXML
-        void btnBookOnAction(ActionEvent event) {
+        void btnCustomerOnAction(ActionEvent event)  {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_customer_form.fxml"))));
 
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
         }
 
         @FXML
         void btnHomeOnAction(ActionEvent event) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
 
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
         }
 
         @FXML
-        void btnLogOutOnAction(ActionEvent event) {
+        void btnPlusOnAction(MouseEvent event) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/register_form.fxml"))));
 
-        }
-
-        @FXML
-        void btnPlusOnAction(MouseEvent event) throws IOException {
-                AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/register_form.fxml"));
-                Scene scene = new Scene(anchorPane);
-                Stage stage = (Stage) dashboard.getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Register");
-                stage.centerOnScreen();
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
         }
 
         @FXML
         void btnRepairCarsOnAction(MouseEvent event) {
-
-        }
-
-        @FXML
-        void btnRepairOnAction(ActionEvent event) {
-
-        }
-
-        @FXML
-        void btnWallateOnAction(ActionEvent event) {
-
         }
 
         @FXML
@@ -100,4 +95,31 @@ public class DashboardFormController {
 
         }
 
+        @FXML
+        void searchOnAction(ActionEvent event) {
+
+        }
+
+        public void btnRepairOnAction(ActionEvent actionEvent) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repair_car_form.fxml"))));
+
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+        }
+
+        public void btnWallateOnAction(ActionEvent actionEvent) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/wallet_form.fxml"))));
+
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+        }
+
+        public void btnLogOutOnAction(ActionEvent actionEvent) {
+        }
 }
