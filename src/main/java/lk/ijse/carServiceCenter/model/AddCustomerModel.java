@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddCustomerModel {
-    public boolean saveTask(AddCustomerDto addCustomerDto) throws SQLException {
+    public static boolean saveCustomer(AddCustomerDto addCustomerDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?)");
@@ -24,8 +24,9 @@ public class AddCustomerModel {
         pstm.setString(5, addCustomerDto.getEmail());
 
         return pstm.executeUpdate() > 0;
-
     }
+
+
 
     public boolean updateCustomer(AddCustomerDto dto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

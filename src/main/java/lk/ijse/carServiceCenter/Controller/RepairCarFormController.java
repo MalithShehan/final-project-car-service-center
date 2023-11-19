@@ -64,7 +64,13 @@ public class RepairCarFormController {
 
     @FXML
     void btnAddPartsOnAction(ActionEvent event) {
+        try {
+            repairCar.getChildren().clear();
+            repairCar.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_parts_form.fxml"))));
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

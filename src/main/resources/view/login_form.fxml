@@ -97,7 +97,7 @@
             </DropShadow>
          </effect>
       </Text>
-      <PasswordField fx:id="textPassword" layoutX="560.0" layoutY="409.0" prefHeight="45.0" prefWidth="306.0" promptText="Enter Password" style="-fx-background-color: FFFFFF; -fx-background-radius: 5;">
+      <PasswordField fx:id="textPassword" layoutX="560.0" layoutY="409.0" onAction="#loginOnAction" prefHeight="45.0" prefWidth="306.0" promptText="Enter Password" style="-fx-background-color: FFFFFF; -fx-background-radius: 5;">
          <font>
             <Font size="18.0" />
          </font>

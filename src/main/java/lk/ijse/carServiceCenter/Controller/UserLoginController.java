@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -12,8 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.carServiceCenter.model.RegisterModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class UserLoginController {
@@ -41,13 +44,46 @@ public class UserLoginController {
 
     @FXML
     void btnSingInOnAction(ActionEvent event) {
+        String userName = textUsername.getText();
+        String password = textPassword.getText();
         try {
-            loginPage.getChildren().clear();
-            loginPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+            boolean isIn = RegisterModel.searchUser(userName, password);
+            if(!isIn) {
+                new Alert(Alert.AlertType.WARNING, "Invalid Username Or Password!").show();
+                return;
+            } else {
+                loginPage.getChildren().clear();
+                loginPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+    @FXML
+    void loginOnAction(ActionEvent event) {
+        String userName = textUsername.getText();
+        String password = textPassword.getText();
+        try {
+            boolean isIn = RegisterModel.searchUser(userName, password);
+            if(!isIn) {
+                new Alert(Alert.AlertType.WARNING, "Invalid Username Or Password!").show();
+                return;
+            } else {
+                loginPage.getChildren().clear();
+                loginPage.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
 
     @FXML
     void createAccountOnAction(MouseEvent event) {

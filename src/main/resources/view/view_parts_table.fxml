@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="AddPartsTable" cacheShape="false" centerShape="false" prefHeight="768.0" prefWidth="1366.0" scaleShape="false" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carServiceCenter.Controller.AddPartsTableFormController">
+    <children>
+        <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/BackPic1.png" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="imagefrunt" fitHeight="680.0" fitWidth="1264.0" layoutX="57.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/Rectangle%2015.png" />
+            </image>
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="0.5921052694320679" green="0.48519736528396606" blue="0.48519736528396606" />
+                    </color>
+                </DropShadow>
+            </effect>
+        </ImageView>
+        <Text layoutX="585.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts Table">
+            <font>
+                <Font name="System Bold" size="35.0" />
+            </font>
+        </Text>
+        <JFXButton fx:id="btnBack" contentDisplay="GRAPHIC_ONLY" layoutX="70.0" layoutY="47.0" onAction="#btnBackOnAction" prefHeight="32.0" prefWidth="46.0" style="-fx-background-radius: 60%;">
+            <graphic>
+                <ImageView fitHeight="94.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icon/icons8-back-64.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
+        <TableView fx:id="tblPartsTable" layoutX="286.0" layoutY="165.0" prefHeight="513.0" prefWidth="804.0">
+            <columns>
+                <TableColumn fx:id="colItemId" minWidth="31.0" prefWidth="200.0" style="-fx-font-size: 15;" text="Item ID" />
+                <TableColumn fx:id="colItemName" prefWidth="200.0" style="-fx-font-size: 15;" text="Item Name" />
+                <TableColumn fx:id="colItemPrice" prefWidth="200.0" style="-fx-font-size: 15;" text="Item Price" />
+                <TableColumn fx:id="colItemQuantity" prefWidth="200.0" style="-fx-font-size: 15;" text="Item Quantity" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
