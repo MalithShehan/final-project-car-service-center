@@ -13,9 +13,12 @@ import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.model.AddCustomerModel;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class AddCustomerFormController {
 
@@ -67,6 +70,8 @@ public class AddCustomerFormController {
     @FXML
     private DatePicker txtDate;
 
+    private AddCustomerModel addCustomerModel = new AddCustomerModel();
+
     @FXML
     void btnBackOnAction(ActionEvent event) {
         try {
@@ -85,18 +90,59 @@ public class AddCustomerFormController {
         String address = textAddress.getText();
         String telNumber = textTelNumber.getText();
         String email = textEmail.getText();
-
-        var AddCustomerDto = new AddCustomerDto(custNIC, custName, address, telNumber, email);
+        Date date = Date.valueOf(txtDate.getValue());
 
         try {
-            boolean isSaved = AddCustomerModel.saveCustomer(AddCustomerDto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Customer Added Successfully").show();
-                clearField();
+            boolean isCustomerAddValidated = validateCustomer();
+            if (isCustomerAddValidated) {
+                boolean isSaved = AddCustomerModel.saveCustomer(new AddCustomerDto(custNIC, custName, address, telNumber, email, date));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Customer Added Successfully").show();
+                    clearField();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+    }
+
+    private boolean validateCustomer() {
+        String custNIC = textNIC.getText();
+        String custName = textName.getText();
+        String address = textAddress.getText();
+        String telNumber = textTelNumber.getText();
+        String email = textEmail.getText();
+
+        boolean isCustNICValidated = Pattern.matches("^\\d+$", custNIC);
+        if (!isCustNICValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer NIC").show();
+            return false;
+        }
+
+        boolean isCustomerNameValidated = Pattern.matches("^[A-Z][a-z]*$", custName);
+        if (!isCustomerNameValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Name").show();
+            return false;
+        }
+
+        boolean isCustomerAddressValidated = Pattern.matches("^\\d{2}\\s[a-zA-Z0-9\\s]+$", address);
+        if (!isCustomerAddressValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Customer Address").show();
+            return false;
+        }
+
+        boolean isCustomerTelNumberValidated = Pattern.matches("^\\d+$", telNumber);
+        if (!isCustomerTelNumberValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Tell Number").show();
+            return false;
+        }
+
+        boolean isCustomerEmailValidated = Pattern.matches("^[a-zA-Z0-9._%+-]+@gmail\\.com$", email);
+        if (!isCustomerEmailValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Email").show();
+            return false;
+        }
+        return true;
     }
 
     private void clearField() {
@@ -105,21 +151,57 @@ public class AddCustomerFormController {
         textAddress.setText("");
         textTelNumber.setText("");
         textEmail.setText("");
+        txtDate.setValue(null);
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        clearField();
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String nic = textNIC.getText();
 
+        var customerModel = new AddCustomerModel();
+
+        try {
+            boolean isDeleted = customerModel.deleteCustomer(nic);
+
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Customer Deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String custNIC = textNIC.getText();
+        String custName = textName.getText();
+        String address = textAddress.getText();
+        String telNumber = textTelNumber.getText();
+        String email = textEmail.getText();
+        Date date = Date.valueOf(txtDate.getValue());
 
+
+        var dto = new AddCustomerDto(custNIC, custName, address, telNumber, email, date);
+
+        var model = new AddCustomerModel();
+
+        try {
+            boolean isValidatedCustomer = validateCustomer();
+            if (isValidatedCustomer) {
+                boolean isUpdated = model.updateCustomer(dto);
+                System.out.println(isUpdated);
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Customer Updated!").show();
+                }
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
@@ -135,7 +217,31 @@ public class AddCustomerFormController {
 
     @FXML
     void textSearchOnAction(ActionEvent event) {
+        String nic = textNIC.getText();
 
+        var model = new AddCustomerModel();
+
+        try {
+            AddCustomerDto dto = model.searchCustomer(nic);
+
+            if (dto != null) {
+                fillFields(dto);
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Customer Not Fount!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+
+    }
+
+    private void fillFields(AddCustomerDto dto) {
+        textNIC.setText(dto.getCustomerNIC());
+        textName.setText(dto.getCustomerName());
+        textAddress.setText(dto.getAddress());
+        textTelNumber.setText(dto.getTel());
+        textEmail.setText(dto.getEmail());
+        txtDate.setValue(dto.getDate().toLocalDate());
     }
 
 }

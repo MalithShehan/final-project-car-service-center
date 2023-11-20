@@ -4,24 +4,24 @@ package lk.ijse.carServiceCenter.model;
 import lk.ijse.carServiceCenter.db.DbConnection;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 public class AddCustomerModel {
     public static boolean saveCustomer(AddCustomerDto addCustomerDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
-        PreparedStatement pstm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?)");
+        PreparedStatement pstm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?,?,?)");
 
         pstm.setString(1, addCustomerDto.getCustomerNIC());
         pstm.setString(2, addCustomerDto.getCustomerName());
         pstm.setString(3, addCustomerDto.getAddress());
         pstm.setString(4, addCustomerDto.getTel());
         pstm.setString(5, addCustomerDto.getEmail());
+        pstm.setDate(6, addCustomerDto.getDate());
 
         return pstm.executeUpdate() > 0;
     }
@@ -60,8 +60,9 @@ public class AddCustomerModel {
             String cus_address = resultSet.getString(3);
             String cus_tell = resultSet.getString(4);
             String cus_email = resultSet.getString(5);
+            Date date = resultSet.getDate(6);
 
-            var dto = new AddCustomerDto(cus_NIC, cus_name, cus_address, cus_tell, cus_email);
+            var dto = new AddCustomerDto(cus_NIC, cus_name, cus_address, cus_tell, cus_email, date );
             dtoList.add(dto);
         }
         return dtoList;
@@ -94,8 +95,9 @@ public class AddCustomerModel {
             String cus_address = resultSet.getString(3);
             String cus_tel = resultSet.getString(4);
             String cus_email = resultSet.getString(5);
+            Date date = resultSet.getDate(6);
 
-            dto = new AddCustomerDto(cus_name, cus_NIC, cus_address, cus_tel, cus_email);
+            dto = new AddCustomerDto(cus_name, cus_NIC, cus_address, cus_tel, cus_email, date);
         }
         return dto;
     }
