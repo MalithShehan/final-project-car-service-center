@@ -48,8 +48,8 @@
             <columns>
                 <TableColumn fx:id="colID" minWidth="31.0" prefWidth="200.0" style="-fx-font-size: 15;" text="ID" />
                 <TableColumn fx:id="colNIC" prefWidth="200.0" style="-fx-font-size: 15;" text="NIC" />
-                <TableColumn fx:id="colDate" prefWidth="250.0" style="-fx-font-size: 15;" text="Date" />
                 <TableColumn fx:id="colBookType" prefWidth="300.0" style="-fx-font-size: 15;" text="Book Type" />
+                <TableColumn fx:id="colDate" prefWidth="250.0" style="-fx-font-size: 15;" text="Date" />
             </columns>
         </TableView>
     </children>

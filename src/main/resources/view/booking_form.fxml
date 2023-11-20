@@ -24,17 +24,6 @@
                 <Image url="@../image/BookingPage.png" />
             </image>
         </ImageView>
-        <TextField fx:id="textBookId" layoutX="133.0" layoutY="211.0" prefHeight="45.0" prefWidth="340.0" promptText="Book ID" style="-fx-background-radius: 10;">
-            <font>
-                <Font size="18.0" />
-            </font>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.8684210777282715" green="0.8402777910232544" blue="0.8402777910232544" />
-               </color>
-            </DropShadow>
-         </effect></TextField>
         <Text layoutX="623.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking" textAlignment="CENTER">
             <font>
                 <Font name="System Bold" size="35.0" />
@@ -44,7 +33,7 @@
             <font>
                 <Font size="18.0" />
             </font></TextField>
-      <DatePicker fx:id="textDate" layoutX="892.0" layoutY="211.0" prefHeight="45.0" prefWidth="340.0" promptText="Date" style="-fx-font-size: 20;" />
+      <DatePicker fx:id="textDate" layoutX="512.0" layoutY="301.0" prefHeight="45.0" prefWidth="340.0" promptText="Date" style="-fx-font-size: 20;" />
       <JFXComboBox fx:id="comBoxNIC" focusColor="WHITE" layoutX="512.0" layoutY="211.0" onAction="#cmbNICOnAction" prefHeight="45.0" prefWidth="340.0" promptText="NIC" style="-fx-background-color: white; -fx-background-radius: 10;" unFocusColor="WHITE" />
       <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="142.0" layoutY="406.0" onAction="#btnAddOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(123, 196, 212, 1); -fx-background-radius: 12;" text="Add">
          <font>
@@ -115,5 +104,29 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <TextField fx:id="textBookId" layoutX="892.0" layoutY="211.0" prefHeight="45.0" prefWidth="340.0" promptText="Book ID" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.8684210777282715" green="0.8402777910232544" blue="0.8402777910232544" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField fx:id="textName" layoutX="136.0" layoutY="211.0" prefHeight="45.0" prefWidth="340.0" promptText="Name" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.8684210777282715" green="0.8402777910232544" blue="0.8402777910232544" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
     </children>
 </AnchorPane>

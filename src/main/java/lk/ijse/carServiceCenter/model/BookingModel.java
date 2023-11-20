@@ -3,10 +3,9 @@ package lk.ijse.carServiceCenter.model;
 import lk.ijse.carServiceCenter.db.DbConnection;
 import lk.ijse.carServiceCenter.dto.BookingDto;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookingModel {
 
@@ -34,6 +33,38 @@ public class BookingModel {
         pstm.setString(2, bookingDto.getBookType());
         pstm.setString(3, bookingDto.getCustomerNIC());
         pstm.setDate(4, bookingDto.getDate());
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public List<BookingDto> getAllBookings() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM booking";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        List<BookingDto> dtoList = new ArrayList<>();
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        while (resultSet.next()) {
+            String bookId = resultSet.getString(1);
+            String bookType = resultSet.getString(2);
+            String customerNIC = resultSet.getString(3);
+            Date date = resultSet.getDate(4);
+
+            var dto = new BookingDto(bookId, bookType, customerNIC, date);
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+    public boolean deleteBooking(String bookId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql =  "DELETE FROM booking WHERE bookId = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1 , bookId);
 
         return pstm.executeUpdate() > 0;
     }

@@ -101,4 +101,25 @@ public class AddCustomerModel {
         }
         return dto;
     }
+
+    public List<AddCustomerDto> loadAllCustomers() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM customer";
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        List<AddCustomerDto> custList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            custList.add(new AddCustomerDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getDate(6)
+            ));
+        }
+        return custList;
+    }
 }
