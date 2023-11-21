@@ -6,9 +6,8 @@ import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
+
 
 public class AddCustomerModel {
     public static boolean saveCustomer(AddCustomerDto addCustomerDto) throws SQLException {
@@ -102,7 +101,7 @@ public class AddCustomerModel {
         return dto;
     }
 
-    public List<AddCustomerDto> loadAllCustomers() throws SQLException {
+    public static List<AddCustomerDto> loadAllCustomers() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM customer";

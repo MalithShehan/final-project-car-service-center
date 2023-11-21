@@ -16,6 +16,15 @@ import java.util.Objects;
 public class DashboardFormController {
 
         @FXML
+        private JFXButton btnCarServices;
+
+        @FXML
+        private JFXButton btnCustomers;
+
+        @FXML
+        private ImageView btnMap;
+
+        @FXML
         private JFXButton btnBookin;
 
         @FXML
@@ -87,11 +96,12 @@ public class DashboardFormController {
         }
 
         @FXML
-        void btnRepairCarsOnAction(MouseEvent event) {
+        void btnCarServicesOnAction(ActionEvent event) {
+
         }
 
         @FXML
-        void btnWashingCarsOnAction(MouseEvent event) {
+        void btnCustomersOnAction(ActionEvent event) {
 
         }
 
@@ -121,5 +131,15 @@ public class DashboardFormController {
         }
 
         public void btnLogOutOnAction(ActionEvent actionEvent) {
+                try {
+                        dashboard.getChildren().clear();
+                        dashboard.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/login_form.fxml"))));
+
+                } catch (IOException e) {
+                        throw new RuntimeException(e);
+                }
+        }
+
+        public void btnMapOnAction(MouseEvent mouseEvent) {
         }
 }

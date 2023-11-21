@@ -1,15 +1,27 @@
 package lk.ijse.carServiceCenter.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.dto.AddPartsDto;
+import lk.ijse.carServiceCenter.dto.RegisterDto;
+import lk.ijse.carServiceCenter.dto.RepairDto;
+import lk.ijse.carServiceCenter.dto.tm.RepairTm;
+import lk.ijse.carServiceCenter.model.AddPartsModel;
+import lk.ijse.carServiceCenter.model.RepairModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 
 public class RepairTableFormController {
@@ -39,7 +51,42 @@ public class RepairTableFormController {
     private AnchorPane repairTable;
 
     @FXML
-    private TableView<?> repairTableView;
+    private TableView<RepairTm> repairTableView;
+
+    public void initialize() {
+        setCellValueFactory();
+        loadAllParts();
+    }
+
+    private void loadAllParts() {
+        var model = new RepairModel();
+
+        ObservableList<RepairTm> obList = FXCollections.observableArrayList();
+
+        try {
+            List<RepairDto> dtoList = model.getAllRepairs();
+
+            for (RepairDto dto : dtoList) {
+                obList.add(new RepairTm(
+                        dto.getRepairId(),
+                        dto.getRepairType(),
+                        dto.getRepairPrice(),
+                        dto.getCustomerNIC()
+                        )
+                );
+            }
+            repairTableView.setItems(obList);
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    private void setCellValueFactory() {
+        colRepairID.setCellValueFactory(new PropertyValueFactory<>("repairId"));
+        colRepairType.setCellValueFactory(new PropertyValueFactory<>("repairType"));
+        colRepairPrice.setCellValueFactory(new PropertyValueFactory<>("repairPrice"));
+        colNIC.setCellValueFactory(new PropertyValueFactory<>("customerNIC"));
+    }
 
     @FXML
     void btnBackOnAction(ActionEvent event) {

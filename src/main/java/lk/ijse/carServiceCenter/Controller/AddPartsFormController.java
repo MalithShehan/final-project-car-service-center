@@ -4,12 +4,17 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.dto.AddPartsDto;
+import lk.ijse.carServiceCenter.model.AddPartsModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class AddPartsFormController {
 
@@ -52,6 +57,8 @@ public class AddPartsFormController {
     @FXML
     private JFXButton btnBack;
 
+    private AddPartsModel addPartsModel = new AddPartsModel();
+
     @FXML
     void btnBackOnAction(ActionEvent event) {
         try {
@@ -65,22 +72,82 @@ public class AddPartsFormController {
 
         @FXML
     void btnAddOnAction(ActionEvent event) {
+        String itemId = textItemId.getText();
+        String itemName = textItemName.getText();
+        double itemPrice = Double.parseDouble(textItemPrice.getText());
+        int quantity = Integer.parseInt(textQuantity.getText());
 
+        try {
+            boolean isAddPartsValidated = validateParts();
+            if (isAddPartsValidated) {
+                boolean isSaved = AddPartsModel.saveParts(new AddPartsDto(itemId, itemName, itemPrice, quantity));
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Item Saved Successfully!").show();
+                    clarField();
+                }
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
+
+    private boolean validateParts() {
+        String itemId = textItemId.getText();
+        int quantity = Integer.parseInt(textQuantity.getText());
+
+        boolean isItemIdValidated = Pattern.matches("I\\d{3}", itemId);
+        if (!isItemIdValidated) {
+            new Alert(Alert.AlertType.ERROR, "Invalid Item ID!").show();
+            return false;
+        }
+        return true;
+    }
+
+    private void clarField() {
+        textItemId.setText("");
+        textItemName.setText("");
+        textItemPrice.setText("");
+        textQuantity.setText("");
     }
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
-
+        clarField();
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        String itemId = textItemId.getText();
 
+        try {
+            boolean isDeleted = AddPartsModel.deleteItem(itemId);
+
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Item Deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
+        String itemId = textItemId.getText();
+        String itemName = textItemName.getText();
+        double itemPrice = Double.parseDouble(textItemPrice.getText());
+        int quantity = Integer.parseInt(textQuantity.getText());
 
+        try {
+            boolean isddPartsValidated = validateParts();
+            if (isddPartsValidated) {
+                boolean isUpdated = addPartsModel.updateItem(new AddPartsDto(itemId, itemName, itemPrice, quantity));
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Item Is Updated!").show();
+                }
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML

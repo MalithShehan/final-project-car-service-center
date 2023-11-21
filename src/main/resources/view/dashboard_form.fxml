@@ -74,7 +74,7 @@
             <Image url="@../icon/search.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="265.0" fitWidth="403.0" layoutX="282.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnMap" fitHeight="265.0" fitWidth="403.0" layoutX="282.0" layoutY="160.0" onDragDetected="#btnMapOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/Rectangle%20199.png" />
          </image>
@@ -108,17 +108,17 @@
             <Image url="@../image/Rectangle%20201.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1006.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1002.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/Ellipse%2020.png" />
          </image>
       </ImageView>
-      <Text layoutX="1073.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1070.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="1200.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="1199.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/Ellipse%207.png" />
          </image>
@@ -128,12 +128,12 @@
             <Image url="@../image/Rectangle%20201.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1004.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1003.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Ellipse%2020.png" />
+            <Image url="@../image/Ellipse%208.png" />
          </image>
       </ImageView>
-      <Text layoutX="1071.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1064.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Levin Macwell">
          <font>
             <Font size="18.0" />
          </font>
@@ -150,10 +150,10 @@
       </ImageView>
       <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1003.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Ellipse%2020.png" />
+            <Image url="@../image/Ellipse%2010.png" />
          </image>
       </ImageView>
-      <Text layoutX="1070.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1065.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lasan Andrive">
          <font>
             <Font size="18.0" />
          </font>
@@ -170,10 +170,10 @@
       </ImageView>
       <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1003.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Ellipse%2020.png" />
+            <Image url="@../image/Ellipse%2014.png" />
          </image>
       </ImageView>
-      <Text layoutX="1070.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1066.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peeter Parker">
          <font>
             <Font size="18.0" />
          </font>
@@ -190,10 +190,10 @@
       </ImageView>
       <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1003.0" layoutY="513.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Ellipse%2020.png" />
+            <Image url="@../image/Ellipse%204.png" />
          </image>
       </ImageView>
-      <Text layoutX="1070.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1056.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loaran Maxwell">
          <font>
             <Font size="18.0" />
          </font>
@@ -210,10 +210,10 @@
       </ImageView>
       <ImageView fitHeight="75.0" fitWidth="38.0" layoutX="1003.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../image/Ellipse%2020.png" />
+            <Image url="@../image/Ellipse%2018.png" />
          </image>
       </ImageView>
-      <Text layoutX="1070.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rexina Leaos">
+      <Text layoutX="1055.0" layoutY="598.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Annabella Betsy">
          <font>
             <Font size="18.0" />
          </font>
@@ -221,16 +221,6 @@
       <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="1197.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/Ellipse%207.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnWashingCars" fitHeight="188.0" fitWidth="231.0" layoutX="292.0" layoutY="448.0" onMouseClicked="#btnWashingCarsOnAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/Rectangle%20209.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="btnRepairCars" fitHeight="188.0" fitWidth="231.0" layoutX="629.0" layoutY="447.0" onMouseClicked="#btnRepairCarsOnAction" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/Rectangle%20209.png" />
          </image>
       </ImageView>
       <JFXButton fx:id="btnCustomer" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="81.0" layoutY="261.0" onAction="#btnCustomerOnAction" prefHeight="35.0" prefWidth="35.0" ripplerFill="BLACK" style="-fx-background-color: transparent; -fx-background-radius: 50%;">
@@ -307,5 +297,57 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <JFXButton fx:id="btnCarServices" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="315.0" layoutY="449.0" onAction="#btnCarServicesOnAction" prefHeight="199.0" prefWidth="238.0" style="-fx-background-color: transparent; -fx-background-radius: 20%;" text="Button">
+         <graphic>
+            <ImageView fitHeight="190.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Rectangle%20209.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnCustomers" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" layoutX="575.0" layoutY="449.0" onAction="#btnCustomersOnAction" prefHeight="199.0" prefWidth="238.0" style="-fx-background-color: transparent; -fx-background-radius: 20%;">
+         <graphic>
+            <ImageView fitHeight="190.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Rectangle%20209.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <ImageView fitHeight="100.0" fitWidth="164.0" layoutX="345.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Rectangle%20221.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="100.0" fitWidth="164.0" layoutX="606.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/Rectangle%20223.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="374.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car Services" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5394737124443054" green="0.497015118598938" blue="0.497015118598938" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
+      <Text layoutX="642.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5394737124443054" green="0.497015118598938" blue="0.497015118598938" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Text>
    </children>
 </AnchorPane>

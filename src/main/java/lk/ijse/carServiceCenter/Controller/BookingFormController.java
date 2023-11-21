@@ -191,9 +191,12 @@ public class BookingFormController {
         var model = new BookingModel();
 
         try {
-            boolean isUpdated = model.updateBooking(dto);
-            if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Booking Is Updated!").show();
+            boolean isValidated = validateBooking();
+            if (isValidated) {
+                boolean isUpdated = model.updateBooking(dto);
+                if (isUpdated) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Booking Is Updated!").show();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
