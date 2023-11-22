@@ -11,7 +11,7 @@ public class AppInitializer extends  Application {
     }
     @Override
     public void start(Stage stage)  throws Exception {
-        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/add_partsStock_form.fxml"))));
         stage.setTitle("Login Form");
 
         stage.show();

@@ -1,9 +1,8 @@
 package lk.ijse.carServiceCenter.model;
 
 import lk.ijse.carServiceCenter.db.DbConnection;
-import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
-import lk.ijse.carServiceCenter.dto.RepairDto;
+import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

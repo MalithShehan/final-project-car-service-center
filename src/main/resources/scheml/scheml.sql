@@ -34,30 +34,6 @@ create table customerManage(
 
 );
 
-create table repairCar(
-                          repairId varchar(35) primary key ,
-                          repairType varchar(155) not null,
-                          repairPrice double not null,
-                          customerNIC varchar(35),
-                          constraint foreign key (customerNIC) references customer(customerNIC)
-
-);
-
-create table item(
-                     itemId varchar(35) primary key ,
-                     itemName varchar(155) not null,
-                     itemPrice double not null,
-                     quantity int not null
-);
-
-create table repairItem(
-                           itemId varchar(35),
-                           constraint foreign key (itemId) references item(itemId),
-                           repairId varchar(35),
-                           constraint foreign key (repairId) references repairCar(repairId)
-
-);
-
 create table booking(
                         bookId varchar(35) primary key ,
                         bookType varchar(155) not null,
@@ -74,4 +50,37 @@ create table payment(
                         payemtnDescription varchar(120),
                         bookId varchar(35),
                         constraint foreign key (bookId) references booking(bookId)
+);
+
+create table itemStock(
+                        itemId varchar(35) primary key,
+                        partName varchar(120),
+                        partPrice varchar(15),
+                        qtyOnHand int
+
+);
+
+create table repairCar(
+                    repairId varchar(35) primary key,
+                    repairType varchar(35),
+                    repairPrice double not null,
+                    customerNIC varchar(35),
+                    constraint foreign key (customerNIC) references customer(customerNIC)
+);
+
+create table item(
+                     itemId varchar(35),
+                     constraint foreign key (itemId) references itemStock(itemId),
+                     itemName varchar(155) not null,
+                     itemPrice double not null,
+                     quantity int not null
+);
+
+
+create table repairItem(
+                           itemId varchar(35),
+                           constraint foreign key (itemId) references itemStock(itemId),
+                           repairId varchar(35),
+                           constraint foreign key (repairId) references repairCar(repairId)
+
 );
