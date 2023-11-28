@@ -86,7 +86,7 @@ public class StockTableFormController {
     void btnBackOnAction(ActionEvent event) {
         try {
             AddPartsStockTable.getChildren().clear();
-            AddPartsStockTable.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_partsStock_form.fxml"))));
+            AddPartsStockTable.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_parts_form.fxml"))));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -94,4 +94,13 @@ public class StockTableFormController {
 
     }
 
+    public void btnAddStockOnAction(ActionEvent actionEvent) {
+        try {
+            AddPartsStockTable.getChildren().clear();
+            AddPartsStockTable.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/add_partsStock_form.fxml"))));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

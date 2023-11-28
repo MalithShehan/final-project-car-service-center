@@ -95,4 +95,18 @@ public class AddPartsTableFormController {
         }
     }
 
+   /* private void setListener() {
+        tblPartsTable.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    var dto = new AddPartsDto(
+                            newValue.getItemId(),
+                            newValue.getItemName(),
+                            newValue.getItemPrice(),
+                            newValue.getQuantity()
+                    );
+                    setFields(dto);
+                }
+    );
+    }*/
+
 }

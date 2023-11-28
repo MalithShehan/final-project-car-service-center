@@ -187,7 +187,10 @@ public class BookingFormController {
         Date date = Date.valueOf(textDate.getValue());
 
         var dto = new BookingDto(bookId, bookType, customerNIC, date);
-
+        if (customerNIC == null || customerNIC.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Please select a customer NIC").show();
+            return;
+        }
         var model = new BookingModel();
 
         try {

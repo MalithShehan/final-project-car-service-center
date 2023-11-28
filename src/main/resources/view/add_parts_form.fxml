@@ -120,5 +120,17 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <JFXButton fx:id="btnStock" buttonType="RAISED" layoutX="557.0" layoutY="282.0" onAction="#btnStockOnAction" prefHeight="62.0" prefWidth="250.0" style="-fx-background-color: rgba(0, 153, 80, 1); -fx-background-radius: 12;" text=" Parts Stock" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-new-product-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
     </children>
 </AnchorPane>

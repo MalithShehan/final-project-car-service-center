@@ -50,5 +50,10 @@
             <artifactId>ikonli-bootstrapicons-pack</artifactId>
             <version>12.3.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.20.1</version>
+        </dependency>
     </dependencies>
 </project>

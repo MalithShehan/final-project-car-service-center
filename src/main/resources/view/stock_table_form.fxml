@@ -13,11 +13,6 @@
 
 <AnchorPane fx:id="AddPartsStockTable" cacheShape="false" centerShape="false" prefHeight="768.0" prefWidth="1366.0" scaleShape="false" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carServiceCenter.Controller.StockTableFormController">
     <children>
-        <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../image/BackPic1.png" />
-            </image>
-        </ImageView>
         <ImageView fx:id="imagefrunt" fitHeight="680.0" fitWidth="1264.0" layoutX="57.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../image/Rectangle%2015.png" />
@@ -30,6 +25,23 @@
                 </DropShadow>
             </effect>
         </ImageView>
+        <ImageView fx:id="imageBack" fitHeight="778.0" fitWidth="1380.0" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/BackPic1.png" />
+            </image>
+        </ImageView>
+      <JFXButton fx:id="btnAddStock" buttonType="RAISED" layoutX="292.0" layoutY="582.0" onAction="#btnAddStockOnAction" prefHeight="62.0" prefWidth="288.0" style="-fx-background-color: rgba(123, 196, 212, 1); -fx-background-radius: 12;" text="Add Parts Stock">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="108.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/icons8-add-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
         <Text layoutX="584.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock Table">
             <font>
                 <Font name="System Bold" size="35.0" />
@@ -44,7 +56,7 @@
                 </ImageView>
             </graphic>
         </JFXButton>
-        <TableView fx:id="tblPartsStockTable" layoutX="286.0" layoutY="165.0" prefHeight="513.0" prefWidth="804.0">
+        <TableView fx:id="tblPartsStockTable" layoutX="286.0" layoutY="133.0" prefHeight="411.0" prefWidth="804.0">
             <columns>
                 <TableColumn fx:id="colItemId" minWidth="31.0" prefWidth="200.0" style="-fx-font-size: 15;" text="Item ID" />
                 <TableColumn fx:id="colIPartName" prefWidth="200.0" style="-fx-font-size: 15;" text="Part Name" />

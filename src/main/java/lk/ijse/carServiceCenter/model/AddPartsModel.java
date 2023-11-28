@@ -3,6 +3,8 @@ package lk.ijse.carServiceCenter.model;
 import lk.ijse.carServiceCenter.db.DbConnection;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
+import lk.ijse.carServiceCenter.dto.tm.AddPartsTm;
+import org.w3c.dom.html.HTMLDListElement;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

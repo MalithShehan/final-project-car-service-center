@@ -9,8 +9,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.carServiceCenter.db.DbConnection;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class DashboardFormController {
@@ -101,7 +110,17 @@ public class DashboardFormController {
         }
 
         @FXML
-        void btnCustomersOnAction(ActionEvent event) {
+        void btnCustomersOnAction(ActionEvent event) throws JRException, SQLException {
+
+                InputStream resourceAsStream = getClass().getResourceAsStream("/report/customer_report.jrxml");
+                JasperDesign load = JRXmlLoader.load(resourceAsStream);
+                JRDesignQuery jrDesignQuery = new JRDesignQuery();
+                jrDesignQuery.setText("SELECT * FROM customer");
+                load.setQuery(jrDesignQuery);
+
+                JasperReport jasperReport = JasperCompileManager.compileReport(load);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
+                JasperViewer.viewReport(jasperPrint, false);
 
         }
 

@@ -3,6 +3,7 @@ package lk.ijse.carServiceCenter.model;
 import lk.ijse.carServiceCenter.db.DbConnection;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
+import lk.ijse.carServiceCenter.dto.tm.AddPartsTm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -72,4 +73,53 @@ public class AddPartsStockModel {
         }
         return dtoList;
     }
+
+    public boolean updateParts(List<AddPartsTm> tmList) throws SQLException {
+        for (AddPartsTm partsTm : tmList) {
+            if (!updateQty(partsTm)) {
+                return false;
+            }
+        }
+        return true;
     }
+
+    private boolean updateQty(AddPartsTm partsTm) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE itemstock SET qtyOnHand = qtyOnHand - ? WHERE itemId = ?";
+
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setInt(1, partsTm.getQuantity());
+        pstm.setString(2, partsTm.getItemId());
+
+        return pstm.executeUpdate() > 0;
+    }
+    public static void delete(String Id,String Nqty) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql ="SELECT qtyOnHand FROM itemstock WHERE itemId = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,Id);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        int qty=0;
+        while (resultSet.next()){
+            qty = resultSet.getInt(1);
+        }
+
+        int newQty = qty-Integer.parseInt(Nqty);
+
+        update(Id,newQty);
+
+    }
+
+    private static void update(String id, int newQty) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql ="UPDATE itemstock set qtyOnHand = ? WHERE itemId = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1,newQty);
+        preparedStatement.setString(2,id);
+
+        preparedStatement.executeUpdate();
+
+    }
+}

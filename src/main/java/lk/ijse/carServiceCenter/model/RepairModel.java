@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepairModel {
-    public boolean saveRepair(RepairDto repairDto) throws SQLException {
+    public static boolean saveRepair(RepairDto repairDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         PreparedStatement pstm = connection.prepareStatement("INSERT INTO repaircar VALUES (?,?,?,?)");
@@ -20,6 +20,19 @@ public class RepairModel {
         pstm.setString(2, repairDto.getRepairType());
         pstm.setDouble(3, repairDto.getRepairPrice());
         pstm.setString(4, repairDto.getCustomerNIC());
+
+        return pstm.executeUpdate() > 0;
+    }
+
+    public static boolean saveRepair(String itemId, String itemName, double itemPrice, int quantity) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "INSERT INTO item VALUES(?, ?, ?, ?)";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, itemId);
+        pstm.setString(2, itemName);
+        pstm.setDouble(3, itemPrice);
+        pstm.setInt(4, quantity);
 
         return pstm.executeUpdate() > 0;
     }

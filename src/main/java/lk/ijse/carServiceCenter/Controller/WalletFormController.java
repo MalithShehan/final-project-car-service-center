@@ -35,5 +35,22 @@ public class WalletFormController {
     }
 
     public void btnPaymentOnAction(ActionEvent actionEvent) {
+        try {
+            wallate.getChildren().clear();
+            wallate.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/payment_table.fxml"))));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void btnBackOnAction(ActionEvent actionEvent) {
+        try {
+            wallate.getChildren().clear();
+            wallate.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/dashboard_form.fxml"))));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

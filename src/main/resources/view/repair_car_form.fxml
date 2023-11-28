@@ -50,7 +50,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <JFXComboBox fx:id="txtNIC" layoutX="512.0" layoutY="199.0" onAction="#comboBoxNic" prefHeight="45.0" prefWidth="340.0" promptText="NIC" style="-fx-background-color: FFFF;" />
+      <JFXComboBox fx:id="txtNIC" layoutX="512.0" layoutY="199.0" onAction="#comboBoxNic" prefHeight="45.0" prefWidth="340.0" promptText="NIC" style="-fx-background-color: FFFF; -fx-font-size: 18;" />
       <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="146.0" layoutY="406.0" onAction="#btnAddOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(123, 196, 212, 1); -fx-background-radius: 12;" text="Add">
          <font>
             <Font name="System Bold" size="25.0" />

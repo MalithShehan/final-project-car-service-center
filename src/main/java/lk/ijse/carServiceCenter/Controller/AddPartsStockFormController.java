@@ -64,7 +64,7 @@ public class AddPartsStockFormController {
     void btnBackOnAction(ActionEvent event) {
         try {
             addPartsStock.getChildren().clear();
-            addPartsStock.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/repair_car_form.fxml"))));
+            addPartsStock.getChildren().add(FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("/view/stock_table_form.fxml"))));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
