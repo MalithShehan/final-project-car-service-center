@@ -17,10 +17,13 @@ import lk.ijse.carServiceCenter.model.ServiceDetailsModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class ServiceDetailsFormController {
+
+    private final ObservableList<DetailsTm> obList = FXCollections.observableArrayList();
 
     @FXML
     private JFXButton btnBack;
@@ -105,5 +108,14 @@ public class ServiceDetailsFormController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void btnServiceDoneOnAction(ActionEvent actionEvent) {
+        List<DetailsTm> tmList = new ArrayList<>();
+
+        for (DetailsTm detailsTm : obList) {
+            tmList.add(detailsTm);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package lk.ijse.carServiceCenter.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class AddPartsFormController {
+
+    private final AddPartsStockModel addPartsStockModel = new AddPartsStockModel();
 
     @FXML
     private AnchorPane addParts;
@@ -63,6 +66,26 @@ public class AddPartsFormController {
 
     @FXML
     private JFXButton btnBack;
+    @FXML
+    private JFXComboBox<String> txtPartId;
+
+    public void initialize() {
+        loadPartIds();
+    }
+
+    private void loadPartIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<AddPartsStockDto> partsList = AddPartsStockModel.loadAllPartsId();
+        for (AddPartsStockDto dto : partsList) {
+            obList.add(dto.getItemId());
+        }
+        txtPartId.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private AddPartsModel addPartsModel = new AddPartsModel();
     private final ObservableList<AddPartsTm> obList = FXCollections.observableArrayList();
@@ -81,7 +104,7 @@ public class AddPartsFormController {
 
         @FXML
     void btnAddOnAction(ActionEvent event) {
-        String itemId = textItemId.getText();
+        String itemId = txtPartId.getValue();
         String itemName = textItemName.getText();
         double itemPrice = Double.parseDouble(textItemPrice.getText());
         int quantity = Integer.parseInt(textQuantity.getText());
@@ -98,7 +121,7 @@ public class AddPartsFormController {
             if (isAddPartsValidated) {
                 boolean isSaved = AddPartsModel.saveParts(new AddPartsDto(itemId, itemName, itemPrice, quantity));
                 if (isSaved) {
-                    AddPartsStockModel.delete(textItemId.getText(),textQuantity.getText());
+                    AddPartsStockModel.delete(txtPartId.getValue(),textQuantity.getText());
                     new Alert(Alert.AlertType.CONFIRMATION, "Item Saved Successfully!").show();
                     clarField();
                 }
@@ -109,7 +132,7 @@ public class AddPartsFormController {
     }
 
     private boolean validateParts() {
-        String itemId = textItemId.getText();
+        String itemId = txtPartId.getValue();
         int quantity = Integer.parseInt(textQuantity.getText());
 
         boolean isItemIdValidated = Pattern.matches("I\\d{3}", itemId);
@@ -121,7 +144,6 @@ public class AddPartsFormController {
     }
 
     private void clarField() {
-        textItemId.setText("");
         textItemName.setText("");
         textItemPrice.setText("");
         textQuantity.setText("");
@@ -186,5 +208,14 @@ public class AddPartsFormController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void comboBoxPartId(ActionEvent actionEvent) throws SQLException {
+        String partId = txtPartId.getValue();
+
+        AddPartsStockDto dto = addPartsModel.searchPartId(partId);
+
+        textItemName.setText(dto.getPartName());
+        textItemPrice.setText(dto.getPartPrice());
     }
 }

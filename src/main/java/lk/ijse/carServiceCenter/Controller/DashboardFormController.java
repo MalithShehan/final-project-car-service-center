@@ -105,7 +105,17 @@ public class DashboardFormController {
         }
 
         @FXML
-        void btnCarServicesOnAction(ActionEvent event) {
+        void btnCarServicesOnAction(ActionEvent event) throws JRException, SQLException {
+                InputStream resourceAsStream = getClass().getResourceAsStream("/report/service_report.jrxml                     ");
+                JasperDesign load = JRXmlLoader.load(resourceAsStream);
+                JRDesignQuery jrDesignQuery = new JRDesignQuery();
+                jrDesignQuery.setText("SELECT * FROM repaircar");
+                load.setQuery(jrDesignQuery);
+
+                JasperReport jasperReport = JasperCompileManager.compileReport(load);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DbConnection.getInstance().getConnection());
+                JasperViewer.viewReport(jasperPrint, false);
+
 
         }
 

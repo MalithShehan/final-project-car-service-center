@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -29,10 +30,6 @@
             </DropShadow>
          </effect>
         </ImageView>
-        <TextField fx:id="textItemId" layoutX="144.0" layoutY="185.0" prefHeight="45.0" prefWidth="340.0" promptText="Item ID" style="-fx-background-radius: 10;">
-            <font>
-                <Font size="18.0" />
-            </font></TextField>
         <Text layoutX="640.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Parts">
             <font>
                 <Font name="System Bold" size="35.0" />
@@ -132,5 +129,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <JFXComboBox fx:id="txtPartId" layoutX="144.0" layoutY="185.0" onAction="#comboBoxPartId" prefHeight="45.0" prefWidth="340.0" promptText="Part ID" style="-fx-background-color: FFFF; -fx-font-size: 18; -fx-background-radius: 10;" />
     </children>
 </AnchorPane>

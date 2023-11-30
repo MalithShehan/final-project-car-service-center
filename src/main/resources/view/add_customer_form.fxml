@@ -58,7 +58,7 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="txtDate" layoutX="903.0" layoutY="322.0" prefHeight="45.0" prefWidth="330.0" promptText="Date" style="-fx-background-radius: 10;" />
+      <DatePicker fx:id="txtDate" layoutX="903.0" layoutY="322.0" prefHeight="45.0" prefWidth="330.0" promptText="Date" style="-fx-background-radius: 10; -fx-font-size: 18;" />
       <JFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="153.0" layoutY="428.0" onAction="#btnAddOnAction" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: rgba(123, 196, 212, 1); -fx-background-radius: 12;" text="Add">
          <font>
             <Font name="System Bold" size="25.0" />

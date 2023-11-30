@@ -11,6 +11,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import lk.ijse.carServiceCenter.db.DbConnection;
+import lk.ijse.carServiceCenter.dto.AddPartsDto;
+import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
+import lk.ijse.carServiceCenter.dto.tm.AddPartsTm;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddPartsStockModel {
     public static boolean saveParts(AddPartsStockDto addPartsStockDtoDto) throws SQLException {
@@ -28,6 +39,8 @@ public class AddPartsStockModel {
         return pstm.executeUpdate() > 0;
     }
 
+
+
     public static boolean deleteItem(String itemId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -38,6 +51,27 @@ public class AddPartsStockModel {
         return pstm.executeUpdate() > 0;
 
     }
+
+    public static List<AddPartsStockDto> loadAllPartsId() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM itemstock";
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        List<AddPartsStockDto> partList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            partList.add(new AddPartsStockDto(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getInt(4)
+            ));
+
+        }
+        return partList;
+    }
+
     public boolean updateParts(AddPartsStockDto addPartsStockDto) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 

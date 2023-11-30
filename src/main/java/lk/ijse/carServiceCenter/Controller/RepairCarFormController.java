@@ -107,10 +107,12 @@ public class RepairCarFormController {
 
         try {
             boolean isRepairCarValidated = validateRepair();
-            boolean isSaved = model.saveRepair(repairDto);
-            if (isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Repair Saved!").show();
-                clearField();
+            if (isRepairCarValidated) {
+                boolean isSaved = model.saveRepair(repairDto);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Repair Saved!").show();
+                    clearField();
+                }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -120,6 +122,7 @@ public class RepairCarFormController {
 
     private boolean validateRepair() {
         String repairId = textID.getText();
+        double repairPrice = Double.parseDouble(txtRepaiPrice.getText());
 
         boolean isRepairIdValidate = Pattern.matches("R\\d{3}", repairId);
         if (!isRepairIdValidate) {

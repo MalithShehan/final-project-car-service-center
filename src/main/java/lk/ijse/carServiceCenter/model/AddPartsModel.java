@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,5 +73,27 @@ public class AddPartsModel {
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    public AddPartsStockDto searchPartId(String partId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM itemstock WHERE itemId = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, partId);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        AddPartsStockDto dto = null;
+
+        if (resultSet.next()) {
+            String itemId = resultSet.getString(1);
+            String partName = resultSet.getString(2);
+            String partPrice = resultSet.getString(3);
+            int qtyOnHand = resultSet.getInt(4);
+
+            dto = new AddPartsStockDto(itemId, partName, partPrice, qtyOnHand);
+        }
+        return dto;
     }
 }
