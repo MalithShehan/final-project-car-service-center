@@ -33,7 +33,7 @@ public class WalletFormController {
     @FXML
     private AnchorPane wallate;
     public void btnDetailsOnAction(ActionEvent actionEvent) throws JRException, SQLException {
-        InputStream resourceAsStream = getClass().getResourceAsStream("/report/details_report.jrxml                     ");
+        InputStream resourceAsStream = getClass().getResourceAsStream("/report/details_report.jrxml");
         JasperDesign load = JRXmlLoader.load(resourceAsStream);
         JRDesignQuery jrDesignQuery = new JRDesignQuery();
         jrDesignQuery.setText("SELECT c.customerName, c.customerNIC, r.repairType, r.repairPrice, i.partName, i.partPrice FROM customer c JOIN repaircar r ON c.customerNIC = r.customerNIC JOIN repairitem ri ON r.repairId = ri.repairId JOIN itemstock i ON ri.itemId = i.itemId");

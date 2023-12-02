@@ -123,7 +123,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[customerName]]></text>
+				<text><![CDATA[Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="159" y="0" width="159" height="18" forecolor="#000000" uuid="519b6448-db8f-426d-bc6a-50aa237f0b03">
@@ -132,7 +132,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[repairType]]></text>
+				<text><![CDATA[Repair Type]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="318" y="0" width="159" height="18" forecolor="#000000" uuid="6ecdf59e-e8da-4c56-b499-7eb587bce7bf">
@@ -141,7 +141,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[repairPrice]]></text>
+				<text><![CDATA[Repair Price]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="477" y="0" width="159" height="18" forecolor="#000000" uuid="3485c4a9-de46-4f41-aa8b-3545f5fff159">
@@ -150,7 +150,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[partName]]></text>
+				<text><![CDATA[Part Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="636" y="0" width="159" height="18" forecolor="#000000" uuid="c21e1c5c-a7d4-4149-a8fc-3105c63f7ed2">
@@ -159,7 +159,7 @@
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[partPrice]]></text>
+				<text><![CDATA[Part Price]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

@@ -32,13 +32,15 @@
         </ImageView>
         <TableView fx:id="tblDetails" layoutX="136.0" layoutY="142.0" prefHeight="468.0" prefWidth="1100.0">
             <columns>
-                <TableColumn fx:id="colCustomerName" prefWidth="200.0" style="-fx-font-size: 18;" text="Customer Name" />
-                <TableColumn fx:id="colCustomerID" prefWidth="125.0" style="-fx-font-size: 18;" text="Customer ID" />
-                <TableColumn fx:id="colRepairDetail" prefWidth="175.0" style="-fx-font-size: 18;" text="Repair Detail" />
-                <TableColumn fx:id="colRepairPrice" prefWidth="150.0" style="-fx-font-size: 18;" text="Repair Price" />
-                <TableColumn fx:id="colItemDetails" prefWidth="150.0" style="-fx-font-size: 18;" text="Item Details" />
-                <TableColumn fx:id="colItemPrice" prefWidth="150.0" style="-fx-font-size: 18;" text="Item Price" />
-                <TableColumn fx:id="colTotal" prefWidth="150.0" style="-fx-font-size: 18;" text="Total" />
+                <TableColumn fx:id="colCustomerName" prefWidth="142.66668701171875" style="-fx-font-size: 18;" text="Customer Name" />
+                <TableColumn fx:id="colCustomerID" prefWidth="151.0" style="-fx-font-size: 18;" text="Customer ID" />
+                <TableColumn fx:id="colRepairDetail" prefWidth="148.33331298828125" style="-fx-font-size: 18;" text="Repair Detail" />
+                <TableColumn fx:id="colRepairPrice" prefWidth="119.66668701171875" style="-fx-font-size: 18;" text="Repair Price" />
+                <TableColumn fx:id="colItemDetails" prefWidth="146.66668701171875" style="-fx-font-size: 18;" text="Item Details" />
+                <TableColumn fx:id="colItemPrice" prefWidth="104.0" style="-fx-font-size: 18;" text="Item Price" />
+                <TableColumn fx:id="colTotal" prefWidth="152.666748046875" style="-fx-font-size: 18;" text="Total" />
+            <TableColumn fx:id="SelectBtn" prefWidth="132.0" style="-fx-font-size: 18;" />
+            <TableColumn fx:id="selectBtn" prefWidth="132.0" style="-fx-font-size: 18;" />
             </columns>
         </TableView>
         <Text layoutX="552.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Totals">

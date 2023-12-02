@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carServiceCenter.dto.DetailsDto;
 import lk.ijse.carServiceCenter.dto.tm.DetailsTm;
+import lk.ijse.carServiceCenter.gmail.Gmailer;
 import lk.ijse.carServiceCenter.model.ServiceDetailsModel;
 
 import java.io.IOException;
@@ -30,6 +33,9 @@ public class PaymentTableFormController {
 
     @FXML
     private TableColumn<?, ?> colCustomerID;
+
+    @FXML
+    private TableColumn<?, ?> selectBtn;
 
     @FXML
     private TableColumn<?, ?> colCustomerName;
@@ -61,26 +67,49 @@ public class PaymentTableFormController {
     @FXML
     private TableView<DetailsTm> tblDetails;
 
-
+    public static String name;
+    public static String id;
+    public static String repairDetails;
+    public static double repairPrice;
+    public static String itemDetails;
+    public static double itemPrice;
+    public static double total;
     public void initialize() {
         setCellValueFactory();
         loadAllDetails();
+        tblDetails.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        tblDetails.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                DetailsTm tm = tblDetails.getSelectionModel().getSelectedItem();
+                if (tm != null) {
+                    name = tm.getCustomerName();
+                    id = tm.getCustomerNIC();
+                    repairDetails = tm.getRepairType();
+                    repairPrice = tm.getRepairPrice();
+                    itemDetails = tm.getPartName();
+                    itemPrice = tm.getPartPrice();
+                    total = tm.getTotal();
+                }
+            }
+        });
     }
+
     private void loadAllDetails() {
         var model = new ServiceDetailsModel();
 
         ObservableList<DetailsTm> obList = FXCollections.observableArrayList();
         try {
-            List<DetailsDto> dtoList = model.getAllDetails();
-
-            for (DetailsDto dto : dtoList) {
+            List<DetailsTm> dtoList = model.getAllDetails();
+            for (DetailsTm dto : dtoList) {
                 obList.add(new DetailsTm(
                         dto.getCustomerName(),
                         dto.getCustomerNIC(),
                         dto.getRepairType(),
                         dto.getRepairPrice(),
                         dto.getPartName(),
-                        dto.getPartPrice()
+                        dto.getPartPrice(),
+                        (dto.getPartPrice() + dto.getRepairPrice()),
+                        new Button()
                 ));
             }
             tblDetails.setItems(obList);
@@ -88,6 +117,7 @@ public class PaymentTableFormController {
             throw new RuntimeException(e);
         }
     }
+
 
     private void setCellValueFactory() {
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
@@ -97,6 +127,7 @@ public class PaymentTableFormController {
         colItemDetails.setCellValueFactory(new PropertyValueFactory<>("partName"));
         colItemPrice.setCellValueFactory(new PropertyValueFactory<>("partPrice"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        selectBtn.setCellValueFactory(new PropertyValueFactory<>("button"));
     }
     @FXML
     void btnBackOnAction(ActionEvent event) {
@@ -111,7 +142,13 @@ public class PaymentTableFormController {
 
     @FXML
     void btnSendMailOnAction(ActionEvent event) {
-
+        if (id != null) {
+            try {
+                Gmailer.setEmailCom("shehansandakalum2003@gmail.com",name + "\n  " + id);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }
 
 }

@@ -15,5 +15,4 @@ public class DetailsDto {
     private double repairPrice;
     private String partName;
     private double partPrice;
-
 }

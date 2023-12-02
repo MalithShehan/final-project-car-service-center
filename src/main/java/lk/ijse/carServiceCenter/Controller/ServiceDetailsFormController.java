@@ -63,31 +63,31 @@ public class ServiceDetailsFormController {
 
     public void initialize() {
         setCellValueFactory();
-        loadAllDetails();
+//        loadAllDetails();
     }
 
-    private void loadAllDetails() {
-        var model = new ServiceDetailsModel();
-
-        ObservableList<DetailsTm> obList = FXCollections.observableArrayList();
-        try {
-            List<DetailsDto> dtoList = model.getAllDetails();
-
-            for (DetailsDto dto : dtoList) {
-                obList.add(new DetailsTm(
-                        dto.getCustomerName(),
-                        dto.getCustomerNIC(),
-                        dto.getRepairType(),
-                        dto.getRepairPrice(),
-                        dto.getPartName(),
-                        dto.getPartPrice()
-                ));
-            }
-            tblDetails.setItems(obList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    private void loadAllDetails() {
+//        var model = new ServiceDetailsModel();
+//
+//        ObservableList<DetailsTm> obList = FXCollections.observableArrayList();
+//        try {
+//            List<DetailsDto> dtoList = model.getAllDetails();
+//
+//            for (DetailsDto dto : dtoList) {
+//                obList.add(new DetailsTm(
+//                        dto.getCustomerName(),
+//                        dto.getCustomerNIC(),
+//                        dto.getRepairType(),
+//                        dto.getRepairPrice(),
+//                        dto.getPartName(),
+//                        dto.getPartPrice()
+//                ));
+//            }
+//            tblDetails.setItems(obList);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     private void setCellValueFactory() {
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
