@@ -101,7 +101,8 @@ public class Gmailer {
                 "\t\t\t\t\t<tr>\n" +
                 "\t\t\t\t\t\t<th><span contenteditable>Item</span></th>\n" +
                 "\t\t\t\t\t\t<th><span contenteditable>Description</span></th>\n" +
-                "\t\t\t\t\t\t<th><span contenteditable>Rate</span></th>\n" +
+                "\t\t\t\t" +
+                "\t\t<th><span contenteditable>Rate</span></th>\n" +
                 "\t\t\t\t\t\t<th><span contenteditable>Quantity</span></th>\n" +
                 "\t\t\t\t\t\t<th><span contenteditable>Price</span></th>\n" +
                 "\t\t\t\t\t</tr>\n" +

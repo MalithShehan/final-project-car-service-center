@@ -51,7 +51,6 @@ public class AddPartsFormController {
 
     @FXML
     private ImageView imagefrunt;
-
     @FXML
     private TextField textItemId;
 
@@ -66,6 +65,7 @@ public class AddPartsFormController {
 
     @FXML
     private JFXButton btnBack;
+
     @FXML
     private JFXComboBox<String> txtPartId;
 

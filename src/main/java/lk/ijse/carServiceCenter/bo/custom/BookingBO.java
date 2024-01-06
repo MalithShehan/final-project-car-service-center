@@ -1,4 +1,4 @@
-package lk.ijse.carServiceCenter.bo;
+package lk.ijse.carServiceCenter.bo.custom;
 
 public interface BookingBO {
 }

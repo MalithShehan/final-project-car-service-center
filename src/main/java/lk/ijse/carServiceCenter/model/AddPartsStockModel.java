@@ -108,26 +108,6 @@ public class AddPartsStockModel {
         return dtoList;
     }
 
-    public boolean updateParts(List<AddPartsTm> tmList) throws SQLException {
-        for (AddPartsTm partsTm : tmList) {
-            if (!updateQty(partsTm)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean updateQty(AddPartsTm partsTm) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "UPDATE itemstock SET qtyOnHand = qtyOnHand - ? WHERE itemId = ?";
-
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setInt(1, partsTm.getQuantity());
-        pstm.setString(2, partsTm.getItemId());
-
-        return pstm.executeUpdate() > 0;
-    }
     public static void delete(String Id,String Nqty) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql ="SELECT qtyOnHand FROM itemstock WHERE itemId = ?";

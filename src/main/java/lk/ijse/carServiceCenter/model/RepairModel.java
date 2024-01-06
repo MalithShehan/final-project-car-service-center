@@ -24,18 +24,6 @@ public class RepairModel {
         return pstm.executeUpdate() > 0;
     }
 
-    public static boolean saveRepair(String itemId, String itemName, double itemPrice, int quantity) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO item VALUES(?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, itemId);
-        pstm.setString(2, itemName);
-        pstm.setDouble(3, itemPrice);
-        pstm.setInt(4, quantity);
-
-        return pstm.executeUpdate() > 0;
-    }
 
     public List<RepairDto> getAllRepairs() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
