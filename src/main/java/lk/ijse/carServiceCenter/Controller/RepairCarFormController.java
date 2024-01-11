@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.RepairBO;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.RepairDto;
@@ -71,6 +73,8 @@ public class RepairCarFormController {
 
     private final AddCustomerModel addCustomerModel = new AddCustomerModel();
 
+    RepairBO repairBO = (RepairBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REPAIR);
+
     public void initialize() {
         loadCustomerNICs();
     }
@@ -108,7 +112,7 @@ public class RepairCarFormController {
         try {
             boolean isRepairCarValidated = validateRepair();
             if (isRepairCarValidated) {
-                boolean isSaved = model.saveRepair(repairDto);
+                boolean isSaved = repairBO.saveRepair(repairDto);
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Repair Saved!").show();
                     clearField();
@@ -116,6 +120,8 @@ public class RepairCarFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -155,20 +161,12 @@ public class RepairCarFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String repairId = textID.getText();
 
         var repairModel = new RepairModel();
 
-        try {
-            boolean isDeleted = repairModel.deletePart(repairId);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Item Deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+        repairBO.deleteRepair(repairId);
     }
 
     @FXML
@@ -188,13 +186,15 @@ public class RepairCarFormController {
         try {
             boolean isValidated = validateRepair();
             if (isValidated){
-                boolean isUpdated = model.updateRepair(dto);
+                boolean isUpdated = repairBO.updateRepair(dto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Repair Table Is Updated!").show();
                 }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

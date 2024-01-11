@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.RegisterBO;
 import lk.ijse.carServiceCenter.model.RegisterModel;
 
 import java.io.IOException;
@@ -41,6 +43,8 @@ public class UserLoginController {
 
     @FXML
     private TextField textUsername;
+
+    RegisterBO registerBO = (RegisterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTER);
 
     @FXML
     void btnSingInOnAction(ActionEvent event) {

@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.BookingBO;
 import lk.ijse.carServiceCenter.dto.BookingDto;
 import lk.ijse.carServiceCenter.dto.tm.BookingTm;
 import lk.ijse.carServiceCenter.model.BookingModel;
@@ -49,6 +51,8 @@ public class BookingTableFormController {
     @FXML
     private TableView<BookingTm> tblCustomer;
 
+    BookingBO bookingBO = (BookingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOOKING);
+
     public void initialize() {
         setCellValueFactory();
         loadAllBookings();
@@ -60,7 +64,7 @@ public class BookingTableFormController {
         ObservableList<BookingTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<BookingDto> dtoList = model.getAllBookings();
+            List<BookingDto> dtoList = bookingBO.getAllBokkings();
 
             for (BookingDto dto : dtoList) {
                 obList.add(new BookingTm(
@@ -72,6 +76,8 @@ public class BookingTableFormController {
             }
             tblCustomer.setItems(obList);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

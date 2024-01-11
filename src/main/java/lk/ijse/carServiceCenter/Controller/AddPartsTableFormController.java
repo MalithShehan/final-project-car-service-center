@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.PartsBO;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.tm.AddPartsTm;
 import lk.ijse.carServiceCenter.model.AddPartsModel;
@@ -49,6 +51,8 @@ public class AddPartsTableFormController {
     @FXML
     private TableView<AddPartsTm> tblPartsTable;
 
+    PartsBO partsBO = (PartsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PARTS);
+
     private final AddPartsModel addPartsModel = new AddPartsModel();
     public void initialize() {
         setCellValueFactory();
@@ -60,7 +64,7 @@ public class AddPartsTableFormController {
 
         ObservableList<AddPartsTm> obList = FXCollections.observableArrayList();
         try {
-            List<AddPartsDto> dtoList = model.loadAllItems();
+            List<AddPartsDto> dtoList = partsBO.getAllPart();
 
             for (AddPartsDto dto : dtoList) {
                 obList.add(new AddPartsTm(
@@ -73,6 +77,8 @@ public class AddPartsTableFormController {
             }
             tblPartsTable.setItems(obList);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

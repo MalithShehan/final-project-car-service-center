@@ -124,7 +124,7 @@ public class AddPartsFormController {
         try {
             boolean isAddPartsValidated = validateParts();
             if (isAddPartsValidated) {
-                boolean isSaved = AddPartsModel.saveParts(new AddPartsDto(itemId, itemName, itemPrice, quantity));
+                boolean isSaved = partsBO.savePart(new AddPartsDto(itemId, itemName, itemPrice, quantity));
                 if (isSaved) {
                     AddPartsStockModel.delete(txtPartId.getValue(),textQuantity.getText());
                     new Alert(Alert.AlertType.CONFIRMATION, "Item Saved Successfully!").show();
@@ -133,8 +133,10 @@ public class AddPartsFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-    }
+        }
 
     private boolean validateParts() {
         String itemId = txtPartId.getValue();
@@ -160,18 +162,10 @@ public class AddPartsFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String itemId = textItemId.getText();
 
-        try {
-            boolean isDeleted = AddPartsModel.deleteItem(itemId);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Item Deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+       partsBO.deletePart(itemId);
     }
 
     @FXML
@@ -184,13 +178,15 @@ public class AddPartsFormController {
         try {
             boolean isddPartsValidated = validateParts();
             if (isddPartsValidated) {
-                boolean isUpdated = addPartsModel.updateItem(new AddPartsDto(itemId, itemName, itemPrice, quantity));
+                boolean isUpdated = partsBO.updatePart(new AddPartsDto(itemId, itemName, itemPrice, quantity));
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Item Is Updated!").show();
                 }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

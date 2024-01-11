@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.RegisterBO;
 import lk.ijse.carServiceCenter.dto.RegisterDto;
 import lk.ijse.carServiceCenter.model.RegisterModel;
 
@@ -53,6 +55,8 @@ public class RegisterFormController {
     private TextField textUsername;
     private RegisterModel registerModel = new RegisterModel();
 
+    RegisterBO registerBO = (RegisterBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTER);
+
     @FXML
     void btnRegisterOnAction(ActionEvent event) {
         String firstName = textFirstName.getText();
@@ -63,7 +67,7 @@ public class RegisterFormController {
         try {
             boolean isRegisterValidated = validateUser();
             if (isRegisterValidated) {
-                boolean isSaved = registerModel.saveUser(new RegisterDto(firstName, lastName, userName, password));
+                boolean isSaved = registerBO.saveRegister(new RegisterDto(firstName, lastName, userName, password));
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "User Register Successfully").show();
@@ -73,6 +77,8 @@ public class RegisterFormController {
             
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

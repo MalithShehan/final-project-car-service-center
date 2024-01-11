@@ -8,6 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.PartsStockBO;
+import lk.ijse.carServiceCenter.bo.custom.impl.PartsStockBOImpl;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
 import lk.ijse.carServiceCenter.model.AddPartsModel;
@@ -60,6 +63,8 @@ public class AddPartsStockFormController {
 
     private AddPartsStockModel addPartsStockModel = new AddPartsStockModel();
 
+    PartsStockBO partsStockBO = (PartsStockBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PARTS_STOCK);
+
     @FXML
     void btnBackOnAction(ActionEvent event) {
         try {
@@ -83,7 +88,7 @@ public class AddPartsStockFormController {
         try {
             boolean isAddPartsStockValidated = validateParts();
             if (isAddPartsStockValidated) {
-                boolean isSaved = AddPartsStockModel.saveParts(new AddPartsStockDto(itemId, partName, partPrice, qtyOnHand ));
+                boolean isSaved = partsStockBO.savePartsStock(new AddPartsStockDto(itemId, partName, partPrice, qtyOnHand ));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Parts Saved Successfully!").show();
                     clarField();
@@ -91,6 +96,8 @@ public class AddPartsStockFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -118,18 +125,10 @@ public class AddPartsStockFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String itemId = textItemId.getText();
 
-        try {
-            boolean isDeleted = AddPartsStockModel.deleteItem(itemId);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Parts Deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+        partsStockBO.deletePartsStock(itemId);
     }
 
     @FXML
@@ -143,13 +142,15 @@ public class AddPartsStockFormController {
         try {
             boolean isddPartsStockValidated = validateParts();
             if (isddPartsStockValidated) {
-                boolean isUpdated = addPartsStockModel.updateParts(new AddPartsStockDto( itemId, partName, partPrice, qtyOnHand));
+                boolean isUpdated = partsStockBO.updatePartsStock(new AddPartsStockDto( itemId, partName, partPrice, qtyOnHand));
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Item Is Updated!").show();
                 }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

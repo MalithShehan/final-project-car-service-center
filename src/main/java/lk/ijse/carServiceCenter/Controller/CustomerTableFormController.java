@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.CustomerBO;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.dto.tm.CustomerTm;
 import lk.ijse.carServiceCenter.model.AddCustomerModel;
@@ -55,6 +57,8 @@ public class CustomerTableFormController {
     @FXML
     private TableView<CustomerTm> tblCustomer;
 
+    CustomerBO customerBO = (CustomerBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+
     public void initialize() {
         setCellValueFactory();
         loadAllCustomers();
@@ -66,7 +70,7 @@ public class CustomerTableFormController {
         ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<AddCustomerDto> dtoList = model.getAllCustomers();
+            List<AddCustomerDto> dtoList = customerBO.getAllCustomer();
 
             for (AddCustomerDto dto : dtoList) {
                 obList.add( new CustomerTm(
@@ -81,6 +85,8 @@ public class CustomerTableFormController {
             }
             tblCustomer.setItems(obList);
         }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

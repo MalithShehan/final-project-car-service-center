@@ -13,6 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.ServiceDetailsBO;
 import lk.ijse.carServiceCenter.dto.DetailsDto;
 import lk.ijse.carServiceCenter.dto.tm.DetailsTm;
 import lk.ijse.carServiceCenter.gmail.Gmailer;
@@ -66,6 +68,8 @@ public class PaymentTableFormController {
 
     @FXML
     private TableView<DetailsTm> tblDetails;
+
+    ServiceDetailsBO serviceDetailsBO = (ServiceDetailsBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.SERVICE_DETAILS);
 
     public static String name;
     public static String id;

@@ -12,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.RepairBO;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.RegisterDto;
 import lk.ijse.carServiceCenter.dto.RepairDto;
@@ -53,6 +55,8 @@ public class RepairTableFormController {
     @FXML
     private TableView<RepairTm> repairTableView;
 
+    RepairBO repairBO = (RepairBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REPAIR);
+
     public void initialize() {
         setCellValueFactory();
         loadAllParts();
@@ -64,7 +68,7 @@ public class RepairTableFormController {
         ObservableList<RepairTm> obList = FXCollections.observableArrayList();
 
         try {
-            List<RepairDto> dtoList = model.getAllRepairs();
+            List<RepairDto> dtoList = repairBO.getAllRepair();
 
             for (RepairDto dto : dtoList) {
                 obList.add(new RepairTm(
@@ -78,6 +82,8 @@ public class RepairTableFormController {
             repairTableView.setItems(obList);
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

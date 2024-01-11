@@ -13,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.BookingBO;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.dto.BookingDto;
 import lk.ijse.carServiceCenter.dto.tm.CustomerTm;
@@ -79,6 +81,8 @@ public class BookingFormController {
     @FXML
     private Label lblCustomerName;
 
+    BookingBO bookingBO = (BookingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOOKING);
+
     public void initialize() {
         loadCustomerNICs();
     }
@@ -117,7 +121,7 @@ public class BookingFormController {
         try {
             boolean isBookingValidated = validateBooking();
             if (isBookingValidated) {
-                boolean isSaved = model.saveBooking(bookDto);
+                boolean isSaved = bookingBO.saveBokking(bookDto);
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Book Saved!").show();
                     clearFields();
@@ -125,6 +129,8 @@ public class BookingFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -163,20 +169,12 @@ public class BookingFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String bookId = textBookId.getText();
 
         var bookingModel = new BookingModel();
 
-        try {
-            boolean isDeleted = bookingModel.deleteBooking(bookId);
-
-            if (isDeleted) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Booking Deleted!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
+        bookingBO.deleteBooking(bookId);
     }
 
     @FXML
@@ -196,13 +194,15 @@ public class BookingFormController {
         try {
             boolean isValidated = validateBooking();
             if (isValidated) {
-                boolean isUpdated = model.updateBooking(dto);
+                boolean isUpdated = bookingBO.updateBooking(dto);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Booking Is Updated!").show();
                 }
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     @FXML

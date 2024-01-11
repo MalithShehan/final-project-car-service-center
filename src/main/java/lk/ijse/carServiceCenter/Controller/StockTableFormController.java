@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.PartsStockBO;
 import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
 import lk.ijse.carServiceCenter.dto.tm.AddPartsStockTm;
 import lk.ijse.carServiceCenter.model.AddPartsStockModel;
@@ -49,6 +51,8 @@ public class StockTableFormController {
     @FXML
     private TableView<AddPartsStockTm> tblPartsStockTable;
 
+    PartsStockBO partsStockBO = (PartsStockBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PARTS_STOCK);
+
     public void initialize() {
         setCellValueFactory();
         loadAllParts();
@@ -59,7 +63,7 @@ public class StockTableFormController {
 
         ObservableList<AddPartsStockTm> obList = FXCollections.observableArrayList();
         try {
-            List<AddPartsStockDto> dtoList = model.loadAllParts();
+            List<AddPartsStockDto> dtoList = partsStockBO.getAllPartsStock();
             for (AddPartsStockDto dto : dtoList) {
                 obList.add(new AddPartsStockTm(
                         dto.getItemId(),
@@ -71,6 +75,8 @@ public class StockTableFormController {
             tblPartsStockTable.setItems(obList);
             } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
