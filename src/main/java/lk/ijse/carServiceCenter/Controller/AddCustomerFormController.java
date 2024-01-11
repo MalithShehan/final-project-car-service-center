@@ -9,6 +9,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.CustomerBO;
+import lk.ijse.carServiceCenter.bo.custom.impl.CustomerBOImpl;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 import lk.ijse.carServiceCenter.model.AddCustomerModel;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -17,6 +20,7 @@ import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -72,6 +76,8 @@ public class AddCustomerFormController {
 
     private AddCustomerModel addCustomerModel = new AddCustomerModel();
 
+    CustomerBOImpl customerBO = (CustomerBOImpl) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+
     @FXML
     void btnBackOnAction(ActionEvent event) {
         try {
@@ -95,7 +101,7 @@ public class AddCustomerFormController {
         try {
             boolean isCustomerAddValidated = validateCustomer();
             if (isCustomerAddValidated) {
-                boolean isSaved = AddCustomerModel.saveCustomer(new AddCustomerDto(custNIC, custName, address, telNumber, email, date));
+                boolean isSaved = customerBO.saveCustomer(new AddCustomerDto(custNIC, custName, address, telNumber, email, date));
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Added Successfully").show();
                     clearField();
@@ -103,6 +109,8 @@ public class AddCustomerFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -160,7 +168,7 @@ public class AddCustomerFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String nic = textNIC.getText();
 
         var customerModel = new AddCustomerModel();
@@ -174,6 +182,7 @@ public class AddCustomerFormController {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
+
     }
 
     @FXML
@@ -188,12 +197,10 @@ public class AddCustomerFormController {
 
         var dto = new AddCustomerDto(custNIC, custName, address, telNumber, email, date);
 
-        var model = new AddCustomerModel();
-
         try {
             boolean isValidatedCustomer = validateCustomer();
             if (isValidatedCustomer) {
-                boolean isUpdated = model.updateCustomer(dto);
+                boolean isUpdated = customerBO.updateCustomer(dto);
                 System.out.println(isUpdated);
                 if (isUpdated) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Customer Updated!").show();
@@ -201,6 +208,8 @@ public class AddCustomerFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -219,10 +228,8 @@ public class AddCustomerFormController {
     void textSearchOnAction(ActionEvent event) {
         String nic = textNIC.getText();
 
-        var model = new AddCustomerModel();
-
         try {
-            AddCustomerDto dto = model.searchCustomer(nic);
+            AddCustomerDto dto = customerBO.searchCustomer(nic);
 
             if (dto != null) {
                 fillFields(dto);
@@ -231,6 +238,8 @@ public class AddCustomerFormController {
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -241,7 +250,7 @@ public class AddCustomerFormController {
         textAddress.setText(dto.getAddress());
         textTelNumber.setText(dto.getTel());
         textEmail.setText(dto.getEmail());
-        txtDate.setValue(dto.getDate().toLocalDate());
+        txtDate.setValue(LocalDate.parse(dto.getDate().toLocaleString()));
     }
 
 }

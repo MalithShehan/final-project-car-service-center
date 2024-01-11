@@ -11,6 +11,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.carServiceCenter.bo.BOFactory;
+import lk.ijse.carServiceCenter.bo.custom.PartsBO;
+import lk.ijse.carServiceCenter.bo.custom.impl.PartsBOImpl;
 import lk.ijse.carServiceCenter.dto.AddPartsDto;
 import lk.ijse.carServiceCenter.dto.AddPartsStockDto;
 import lk.ijse.carServiceCenter.dto.tm.AddPartsTm;
@@ -68,6 +71,8 @@ public class AddPartsFormController {
 
     @FXML
     private JFXComboBox<String> txtPartId;
+
+    PartsBOImpl partsBO = (PartsBOImpl) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PARTS);
 
     public void initialize() {
         loadPartIds();

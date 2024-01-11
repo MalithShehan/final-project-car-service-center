@@ -5,8 +5,8 @@ import lk.ijse.carServiceCenter.db.DbConnection;
 import lk.ijse.carServiceCenter.dto.AddCustomerDto;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.Date;
 
 
 public class AddCustomerModel {
@@ -20,7 +20,7 @@ public class AddCustomerModel {
         pstm.setString(3, addCustomerDto.getAddress());
         pstm.setString(4, addCustomerDto.getTel());
         pstm.setString(5, addCustomerDto.getEmail());
-        pstm.setDate(6, addCustomerDto.getDate());
+        pstm.setDate(6, (java.sql.Date) addCustomerDto.getDate());
 
         return pstm.executeUpdate() > 0;
     }
